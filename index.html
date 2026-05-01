@@ -92,11 +92,19 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) 250px;
-      gap: 48px;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 46px;
       align-items: start;
       padding: 64px 0 54px;
       border-bottom: 1px solid var(--line-soft);
+    }
+
+    .hero-main {
+      min-width: 0;
+    }
+
+    .hero-aside {
+      padding-top: 44px;
     }
 
     .eyebrow {
@@ -153,15 +161,21 @@
     }
 
     .self-joke {
-      max-width: 760px;
-      margin-top: 16px;
+      max-width: 310px;
+      margin-top: 0;
       color: #12304a;
-      font-size: 0.96rem;
+      font-size: 0.9rem;
       line-height: 1.58;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--nature-pink-soft), rgba(255, 255, 255, 0));
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 400;
+      background: linear-gradient(135deg, var(--nature-pink-soft), rgba(255, 255, 255, 0.55));
       border-left: 3px solid var(--nature-pink);
-      padding: 10px 0 10px 14px;
+      padding: 13px 14px;
+    }
+
+    .self-joke strong {
+      font-weight: 700;
     }
 
     .profile-note {
@@ -224,12 +238,42 @@
 
     .profile-card {
       padding: 0;
+      max-width: 280px;
+    }
+
+    .final-photo {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding: 38px 0 46px;
+      border-bottom: none;
+    }
+
+    .final-photo .portrait {
+      width: 300px;
+      max-width: 300px;
+      border-radius: 20px;
+    }
+
+    .final-note {
+      max-width: 430px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #f8fcff, #fff8fb);
+      border-left: 3px solid var(--nature-pink);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .final-note p {
+      margin: 0;
+      color: #527b98;
+      font-size: 0.9rem;
+      line-height: 1.75;
     }
 
     .portrait {
       display: block;
       position: relative;
-      aspect-ratio: 4 / 8;
+      aspect-ratio: 3 / 5;
       width: 100%;
       overflow: hidden;
       border-radius: var(--radius-lg);
@@ -242,19 +286,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
       display: block;
       filter: grayscale(10%) saturate(0.92) contrast(0.98);
     }
 
     .portrait-fallback {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      color: rgba(56, 163, 220, 0.34);
-      font-size: 4.8rem;
-      font-weight: 640;
-      letter-spacing: -0.08em;
+      display: none;
     }
 
     .photo-hint {
@@ -508,20 +546,41 @@
 
       .hero {
         grid-template-columns: 1fr;
-        gap: 38px;
+        gap: 24px;
         padding-top: 52px;
       }
 
-      .profile-card { max-width: 400px; }
+      .hero-aside {
+        padding-top: 0;
+      }
+
+      .self-joke {
+        max-width: 100%;
+      }
+
+      .profile-card { max-width: 360px; }
       .section-heading { grid-template-columns: 1fr; gap: 12px; }
       .two-column-text { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 560px) {
       .site-shell, .topbar, footer { width: min(100% - 24px, var(--max)); }
       .hero { padding: 44px 0 52px; }
       .timeline li, .pub-list li { grid-template-columns: 1fr; gap: 8px; }
       .pub-list li::before { padding-top: 0; }
+      .final-photo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .final-photo .portrait {
+        width: min(270px, 100%);
+        max-width: 270px;
+      }
+      .final-note {
+        max-width: 100%;
+        padding: 12px 14px;
+      }
     }
   </style>
 </head>
@@ -541,16 +600,11 @@
 
   <main id="home" class="site-shell">
     <section class="hero" aria-label="Intro">
-      <div>
+      <div class="hero-main">
         <span class="eyebrow">Research Scientist · RIKEN AIP</span>
         <h1>Andong Wang <span class="name-cn" aria-label="Chinese name">王安东</span></h1>
         <p class="subtitle">
           Andong is a researcher at RIKEN AIP studying the so-called tensor learning, often by extending ideas from matrices and functions to tensors. He hopes to develop ideas that are both conceptually deep and practically useful.
-        </p>
-        <p class="self-joke">
-          🤖 In his early engineering days, things worked but he did not know why.<br />
-          🤯 In his later theory days, he knew why but things did not work.<br />
-          🫠 His current ambition is to combine the two traditions: neither knowing why, nor making it work.
         </p>
         <div class="hero-actions">
           <a class="text-link" href="#publications">Selected Publications</a>
@@ -565,16 +619,11 @@
           <span class="tag">Robotics</span>
         </div>
       </div>
-
-      <aside class="profile-card" aria-label="Profile summary">
-        <!-- Replace wad.jpg with a small portrait URL, for example:
-             https://www.patternrecognition.asia/wad/images/andong-wang-small.jpg -->
-        <a class="portrait" href="wad.jpg" target="_blank" rel="noopener" aria-label="Open portrait photo">
-          <img src="wad.jpg" alt="Small portrait of Andong Wang" onerror="this.style.display='none';" />
-          <span class="portrait-fallback"></span>
-        </a>
-  <p class="quiet-note">
-          东子人菜瘾大，屡屡犯错；论文如果有误，烦请投书教育。
+      <aside class="hero-aside" aria-label="A self-deprecating note">
+        <p class="self-joke">
+          🤖 In his early engineering days, things worked but he <strong>did not know why</strong>.<br />
+          🤯 In his later theory days, he knew why but <strong>nothing worked</strong>.<br />
+          🫠 His current ambition is to combine the two traditions: <strong>neither knowing why, nor making it work</strong>.
         </p>
       </aside>
     </section>
@@ -636,7 +685,7 @@
           <span class="time">2019 – 2022</span>
           <div>
             <h3>Postdoctoral Researcher · Guangdong University of Technology</h3>
-            <p>Tensor recovery and optimization; supervised by <strong>Prof. Guoxu Zhou</strong>.</p>
+            <p>Tensor recovery and optimization; with <strong>Prof. Guoxu Zhou</strong>.</p>
           </div>
         </li>
         <li>
@@ -673,27 +722,39 @@
       </ol>
     </section>
 
-    <section id="publications" aria-label="Selected publications">
+<section id="publications" aria-label="Selected publications">
       <div class="section-heading">
         <h2>Selected Publications</h2>
         <p>Selected papers on tensor geometry, robust generalization, transfer learning, and tensor recovery.</p>
       </div>
       <ol class="pub-list">
-        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://openreview.net/pdf?id=0uo2GPd94f" target="_blank" rel="noopener">PDF</a></div></li>
-        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a></div></li>
-        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a></div></li>
-        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a></div></li>
+        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://openreview.net/pdf?id=0uo2GPd94f" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
         <li><div><span class="pub-title">Noisy tensor completion via orientation invariant tubal nuclear norm.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · Pacific Journal of Optimization, 19(2), 273–313, 2023.</span> <a class="pub-link" href="https://yokohamapublishers.jp/online2/oppjo/vol19/p273.html" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">A hybrid norm for guaranteed tensor recovery.</span> <span class="pub-meta">Luo, Y., <strong>Wang, A.</strong>*, Zhou, G., & Zhao, Q. · Frontiers in Physics, 10, 885402, 2022.</span> <a class="pub-link" href="https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2022.885402/full" target="_blank" rel="noopener">Link</a></div></li>
         <li><div><span class="pub-title">Guaranteed robust tensor completion via L-SVD with applications to remote sensing data.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., & Zhao, Q. · Remote Sensing, 13(18), 3671, 2021.</span> <a class="pub-link" href="https://www.mdpi.com/2072-4292/13/18/3671" target="_blank" rel="noopener">Link</a></div></li>
         <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">DOI</a></div></li>
-        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020, Oral.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a></div></li>
+        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020, Oral.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
         <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019, Oral.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">IEEE</a></div></li>
         <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.</span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
         <li><div><span class="pub-title">Negative obstacle detection in unstructured environment based on multiple LiDARs and compositional features.</span> <span class="pub-meta">Liu, J., Tang, Z., <strong>Wang, A.</strong>, & Shi, C. · Robot, 2017. In Chinese.</span> <a class="pub-link" href="https://robot.sia.cn/en/article/doi/10.13973/j.cnki.robot.2017.0638" target="_blank" rel="noopener">Link</a></div></li>
       </ol>
     </section>
 
+
+    <section class="final-photo" aria-label="Portrait photo and note">
+      <aside class="profile-card">
+        <a class="portrait" href="wad.jpg" target="_blank" rel="noopener" aria-label="Open portrait photo">
+          <img src="wad.jpg" alt="Small portrait of Andong Wang" onerror="this.style.display='none';" />
+          <span class="portrait-fallback"></span>
+        </a>
+      </aside>
+      <div class="final-note">
+        <p>东子人菜瘾大，屡屡犯错。</p>
+        <p>论文如果有误，烦请投书教育。</p>
+      </div>
+    </section>
 
   </main>
 
