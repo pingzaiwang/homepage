@@ -582,6 +582,13 @@
         padding: 12px 14px;
       }
     }
+    .site-counter {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto 22px;
+  color: var(--muted-light);
+  font-size: 0.82rem;
+  text-align: right;
+}
   </style>
 </head>
 <body>
@@ -766,7 +773,23 @@
 
   <footer>© <span id="year">2026</span> Andong Wang · Research Scientist, RIKEN AIP.</footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-  <script data-goatcounter="https://antonw.goatcounter.com/count"
+  <div class="site-counter" aria-label="Visitor count">
+  Visits: <span id="goatcounter-visits">loading...</span>
+</div>
+
+<script>
+  var t = setInterval(function() {
+    if (window.goatcounter && window.goatcounter.visit_count) {
+      clearInterval(t);
+      window.goatcounter.visit_count({
+        append: '#goatcounter-visits',
+        type: 'html'
+      });
+    }
+  }, 100);
+</script>
+
+<script data-goatcounter="https://antonw.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
