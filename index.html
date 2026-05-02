@@ -531,11 +531,14 @@
       color: #6fa6c7;
       font-size: 0.9rem;
       border-top: 1px solid var(--line-soft);
+      line-height: 1.65;
     }
+
     .visit-count {
       color: var(--muted);
       white-space: nowrap;
     }
+
     @media (max-width: 860px) {
       .topbar {
         align-items: flex-start;
@@ -577,16 +580,20 @@
         gap: 14px;
       }
       .final-photo .portrait {
-        width: min(270px, 100%);
-        max-width: 270px;
+        width: min(300px, 100%);
+        max-width: 300px;
       }
       .final-note {
         max-width: 100%;
         padding: 12px 14px;
       }
+      footer {
+        line-height: 1.75;
+      }
+      .visit-count {
+        display: inline-block;
+      }
     }
-   
-}
   </style>
 </head>
 <body>
@@ -758,12 +765,13 @@
         </a>
       </aside>
       <div class="final-note">       
-        <p>十年来，想搞定负障碍，仍然不得要领。</p>
-        <p>几年来，想学代数几何，却是一塌糊涂。</p>
-        <p>近两年，想建模人与AI，但被思维桎梏。</p>
-        <p>。。。。。。</p>
-        <p>东子人菜瘾大，虽然谨小慎微，却也屡屡出错。作为太平天国爱好者，遥想平在山兄弟们二十岁的旷世暴走，而自己年近四十，须发渐白，还在逃避困难，涂几张纸取巧偷安。稀里糊涂二十年，对人对己对学问，说一声抱歉。</p> 
-        <p>🙏🏻🙏🏻🙏🙏🏻🙏🏻🙏</p>
+          <p>十年来，想搞定负障碍，仍然不得要领。</p>
+          <p>几年来，想学代数几何，却是一塌糊涂。</p>
+          <p>近两年，想建模人与AI，但被思维桎梏。</p>
+          <p>。。。。。。</p>
+          <p>东子人菜瘾大，虽然谨小慎微，却也屡屡出错。作为太平天国爱好者，遥想平在山兄弟们二十岁的旷世暴走，而自己年近四十，须发渐白，还在逃避困难，涂几张纸取巧偷安。</p>
+          <p>稀里糊涂二十年，对人对己对科研，说一声抱歉。</p> 
+          <p>🙏🏻🙏🏻🙏🙏🏻🙏🏻🙏</p>
       </div>
     </section>
 
@@ -771,14 +779,31 @@
 
   <footer>© <span id="year">2026</span> Andong Wang · Research Scientist, RIKEN AIP. <span class="visit-count">Visits: <span id="goatcounter-visits">—</span></span></footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
   <script>
-    var goatCounterTimer = setInterval(function() {
-      if (window.goatcounter && window.goatcounter.visit_count) {
-        clearInterval(goatCounterTimer);
-        window.goatcounter.visit_count({ append: '#goatcounter-visits', type: 'html' });
-      }
-    }, 100);
+    (function() {
+      var target = document.getElementById("goatcounter-visits");
+      if (!target) return;
+
+      var path = window.location.pathname || "/";
+      var url = "https://antonw.goatcounter.com/counter/" + encodeURIComponent(path) + ".json";
+
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) throw new Error("counter unavailable");
+          return response.json();
+        })
+        .then(function(data) {
+          if (data && data.count) {
+            target.textContent = data.count;
+          }
+        })
+        .catch(function() {
+          target.textContent = "—";
+        });
+    })();
   </script>
+
   <script data-goatcounter="https://antonw.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
