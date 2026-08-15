@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Andong Wang — Research Scientist at RIKEN AIP. Tensor learning, algebraic and geometric methods, trustworthy learning from imperfect information, robust transfer, and quantum machine learning." />
+  <meta name="description" content="Andong Wang, Research Scientist at RIKEN AIP. Tensor learning, algebraic geometry methods, trustworthy learning from imperfect information, robust transfer, and quantum machine learning." />
   <title>Andong Wang | Researcher, RIKEN AIP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fbfdff;
+      --bg: #f7fafe;
       --paper: #ffffff;
-      --ink: #172536;
-      --ink-soft: #284156;
-      --muted: #4f7895;
-      --muted-light: #78a8c8;
-      --line: #c5e3f4;
-      --line-soft: #e4f4fc;
-      --blue: #38a3dc;
-      --blue-deep: #1f78b4;
-      --blue-soft: #edf8ff;
-      --nature-pink: #1f78b4;
-      --nature-pink-soft: #fff7fa;
-      --serif: Georgia, "Times New Roman", Times, serif;
-      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "Helvetica Neue", sans-serif;
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --ink: #102235;
+      --ink-soft: #233b52;
+      --muted: #4a7191;
+      --muted-light: #7ca5c5;
+      --line: #bad7ee;
+      --line-soft: #e3eef8;
+      --blue: #298cd1;
+      --blue-deep: #135d94;
+      --blue-soft: #edf5fc;
+      --blue-accent: #2284c8;
+      --blue-subtle: #f0f6fc;
+      --font-kaiti: "Kaiti SC", "STKaiti", "KaiTi", "BiauKai", "FZKai-Z03S", serif;
+      --serif: "Cormorant Garamond", "EB Garamond", "Times New Roman", Times, Georgia, serif;
+      --times: "Times New Roman", Times, "Kaiti SC", "STKaiti", "KaiTi", "BiauKai", serif;
+      --sans: "Times New Roman", Times, "Kaiti SC", "STKaiti", "KaiTi", "BiauKai", serif;
+      --radius-lg: 20px;
+      --radius-md: 12px;
       --max: 1080px;
     }
 
@@ -33,12 +38,14 @@
     body {
       margin: 0;
       color: var(--ink);
-      font-family: var(--sans);
+      font-family: var(--times);
+      font-size: 1.02rem;
       background:
-        radial-gradient(circle at 84% 4%, rgba(192, 220, 255, 0.55), transparent 24%),
-        linear-gradient(180deg, #eef7ff 0%, #fbfdff 300px),
+        radial-gradient(circle at 82% 4%, rgba(182, 218, 248, 0.5), transparent 28%),
+        radial-gradient(circle at 12% 16%, rgba(205, 232, 255, 0.35), transparent 22%),
+        linear-gradient(180deg, #edf6fc 0%, #f7fafe 340px),
         var(--bg);
-      line-height: 1.62;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -48,13 +55,13 @@
 
     .topbar {
       width: min(var(--max), calc(100% - 40px));
-      margin: 26px auto 0;
+      margin: 24px auto 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 18px;
-      padding: 0 0 18px;
-      border-bottom: 1px solid rgba(56, 163, 220, 0.32);
+      gap: 20px;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--line);
     }
 
     .wordmark {
@@ -62,8 +69,15 @@
       align-items: center;
       gap: 10px;
       font-family: var(--serif);
-      font-weight: 600;
-      letter-spacing: -0.01em;
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-transform: uppercase;
+      transition: color 0.18s ease;
+    }
+
+    .wordmark:hover {
       color: var(--blue-deep);
     }
 
@@ -71,24 +85,48 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--blue);
+      background: var(--blue-accent);
+      box-shadow: 0 0 10px rgba(34, 132, 200, 0.45);
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 22px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
     nav a {
-      color: var(--blue-deep);
-      font-size: 0.94rem;
+      color: var(--muted);
+      font-family: var(--times);
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      padding: 4px 0;
+      position: relative;
       transition: color 0.18s ease;
     }
 
-    nav a:hover { color: #0f6fa8; }
+    nav a:hover {
+      color: var(--blue-deep);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue-accent);
+      border-radius: 1px;
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
 
     .hero {
       display: grid;
@@ -96,7 +134,7 @@
       gap: 46px;
       align-items: start;
       padding: 64px 0 54px;
-      border-bottom: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line);
     }
 
     .hero-main {
@@ -111,67 +149,76 @@
       display: inline-block;
       margin-bottom: 20px;
       color: var(--blue-deep);
-      font-size: 0.78rem;
-      font-weight: 650;
+      font-size: 0.82rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      border-left: 3px solid var(--nature-pink);
+      border-left: 3px solid var(--blue-accent);
       padding-left: 10px;
+      font-family: var(--times);
     }
 
     h1, h2, h3 {
       margin: 0;
-      line-height: 1.16;
-      letter-spacing: -0.02em;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
       font-family: var(--serif);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     h1 {
       max-width: 720px;
-      font-size: clamp(1.9rem, 4vw, 3.2rem);
-      color: #12304a;
+      font-size: clamp(2.3rem, 4.4vw, 3.4rem);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
     }
 
     .name-cn {
       display: inline-block;
-      margin-left: 0.36em;
-      color: #2f8fca;
-      font-size: 0.52em;
-      font-weight: 520;
-      letter-spacing: 0.07em;
-      vertical-align: 0.08em;
+      margin-left: 0.42em;
+      color: var(--ink);
+      font-family: var(--font-kaiti);
+      font-size: 0.62em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      vertical-align: 0.04em;
       white-space: nowrap;
     }
 
     .subtitle {
       max-width: 760px;
-      margin-top: 22px;
+      margin-top: 18px;
       color: var(--ink-soft);
-      font-size: clamp(1rem, 1.8vw, 1.12rem);
-      line-height: 1.58;
+      font-size: clamp(0.92rem, 1.4vw, 1.02rem);
+      line-height: 1.6;
     }
 
     .quiet-note {
       max-width: 720px;
       margin-top: 14px;
-      color: #527b98;
-      font-size: 0.92rem;
-      line-height: 1.55;
+      color: #4a7191;
+      font-size: 0.96rem;
+      line-height: 1.58;
     }
 
     .self-joke {
       max-width: 310px;
       margin-top: 0;
-      color: #12304a;
-      font-size: 0.9rem;
-      line-height: 1.58;
-      font-family: var(--sans);
+      color: #10263c;
+      font-size: 0.96rem;
+      line-height: 1.62;
+      font-family: var(--times);
       font-style: normal;
       font-weight: 400;
-      background: linear-gradient(135deg, var(--nature-pink-soft), rgba(255, 255, 255, 0.55));
-      border-left: 3px solid var(--nature-pink);
-      padding: 13px 14px;
+      background: linear-gradient(135deg, #eef6fc, #f6faff);
+      border: 1px solid #d3e6f5;
+      border-left: 3px solid var(--blue-accent);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: 0 4px 16px rgba(19, 93, 148, 0.03);
     }
 
     .self-joke strong {
@@ -190,7 +237,7 @@
       margin-top: 10px;
       font-size: 0.78rem;
       line-height: 1.55;
-      color: #527b98;
+      color: #4a7191;
     }
 
     .hero-actions {
@@ -205,19 +252,23 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #0f76b7;
+      color: #176da8;
       font-weight: 650;
-      border-bottom: 1px solid rgba(56, 163, 220, 0.45);
+      border-bottom: 1px solid rgba(41, 140, 209, 0.45);
       line-height: 1.4;
+      transition: all 0.18s ease;
     }
 
-    .text-link:hover { border-color: var(--blue-deep); }
+    .text-link:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
 
     .email-link {
-      color: #437895;
-      border-bottom: 1px solid rgba(56, 163, 220, 0.28);
+      color: #406f8e;
+      border-bottom: 1px solid rgba(41, 140, 209, 0.28);
       font-size: 0.94rem;
+      transition: color 0.18s ease;
     }
+
+    .email-link:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
 
     .tag-row {
       display: flex;
@@ -228,12 +279,19 @@
     }
 
     .tag {
-      color: #286d9e;
-      background: linear-gradient(180deg, #f7fcff, #fff8fb);
-      border: 1px solid #d9effb;
+      color: #175e92;
+      background: #eaf3fb;
+      border: 1px solid #cde2f3;
       border-radius: 999px;
-      padding: 5px 9px;
+      padding: 5px 10px;
       font-size: 0.82rem;
+      transition: all 0.18s ease;
+    }
+
+    .tag:hover {
+      background: #dcecf8;
+      color: #0d4974;
+      border-color: #bad8ee;
     }
 
     .profile-card {
@@ -252,22 +310,30 @@
     .final-photo .portrait {
       width: 250px;
       max-width: 250px;
-      border-radius: 20px;
+      border-radius: 18px;
+      border: 1px solid #c8dfef;
+      box-shadow: 0 6px 24px rgba(19, 93, 148, 0.06);
     }
 
     .final-note {
       max-width: 450px;
-      padding: 14px 16px;
-      background: linear-gradient(135deg, #f8fcff, #fff8fb);
-      border-left: 3px solid var(--nature-pink);
-      border-radius: 0 14px 14px 0;
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #eef6fd, #f7fbff);
+      border: 1px solid #d4e7f6;
+      border-left: 3px solid var(--blue-accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: 0 4px 18px rgba(19, 93, 148, 0.03);
+      font-family: var(--font-kaiti);
     }
 
     .final-note p {
       margin: 0;
-      color: #527b98;
-      font-size: 0.9rem;
-      line-height: 1.75;
+      color: #23435f;
+      font-size: 0.88rem;
+      line-height: 1.78;
+      font-family: var(--font-kaiti);
+      font-weight: 400;
+      letter-spacing: 0.025em;
     }
 
     .portrait {
@@ -278,7 +344,7 @@
       overflow: hidden;
       border-radius: var(--radius-lg);
       background:
-        linear-gradient(135deg, #eef9ff, #fbfdff);
+        linear-gradient(135deg, #e8f4fc, #f7fbfe);
       border: 1px solid var(--line);
     }
 
@@ -288,7 +354,7 @@
       object-fit: cover;
       object-position: center center;
       display: block;
-      filter: grayscale(10%) saturate(0.92) contrast(0.98);
+      filter: grayscale(8%) saturate(0.94) contrast(0.98);
     }
 
     .portrait-fallback {
@@ -298,7 +364,7 @@
     .photo-hint {
       display: block;
       margin-top: 12px;
-      color: #6da4c7;
+      color: #6398bc;
       font-size: 0.84rem;
       line-height: 1.5;
     }
@@ -307,7 +373,7 @@
       margin: 22px 0 0;
       padding: 0;
       list-style: none;
-      color: #284156;
+      color: #233b52;
       font-size: 0.95rem;
     }
 
@@ -327,8 +393,8 @@
 
     section {
       scroll-margin-top: 60px;
-      padding: 48px 0;
-      border-bottom: 1px solid var(--line-soft);
+      padding: 50px 0;
+      border-bottom: 1px solid var(--line);
     }
 
     .section-heading {
@@ -341,15 +407,32 @@
 
     .section-heading h2 {
       color: var(--blue-deep);
-      font-size: clamp(1.36rem, 2.4vw, 1.9rem);
+      font-size: clamp(1.48rem, 2.7vw, 2.05rem);
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
     .section-heading p {
       max-width: 1100px;
-      color: #527b98;
+      color: #4a7191;
       font-size: 0.92rem;
     }
-.two-column-text {
+
+    .sub-heading {
+      margin-top: 38px;
+      margin-bottom: 14px;
+    }
+
+    .sub-heading h3 {
+      color: var(--blue-deep);
+      font-size: 1.25rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .two-column-text {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px 38px;
@@ -358,18 +441,20 @@
     .text-block {
       padding-top: 14px;
       border-top: 1px solid var(--line-soft);
-      box-shadow: inset 0 1px 0 rgba(245, 219, 228, 0.36);
+      box-shadow: inset 0 1px 0 rgba(207, 226, 242, 0.55);
     }
 
     .text-block h3 {
       margin-bottom: 8px;
-      color: #1d4864;
-      font-size: 0.98rem;
+      color: #17425f;
+      font-size: 1.08rem;
+      font-family: var(--serif);
+      font-weight: 700;
       letter-spacing: -0.01em;
     }
 
     .text-block p {
-      color: #365a73;
+      color: #31526b;
       font-size: 0.93rem;
     }
 
@@ -391,22 +476,23 @@
     }
 
     .time {
-      color: #4f7895;
+      color: #4a7191;
       font-size: 0.9rem;
       font-weight: 560;
       letter-spacing: -0.01em;
     }
 
     .timeline h3 {
-      color: #243244;
-      font-size: 0.94rem;
+      color: #1a2c3e;
+      font-size: 1.02rem;
       margin-bottom: 2px;
       letter-spacing: -0.01em;
-      font-weight: 600;
+      font-family: var(--serif);
+      font-weight: 700;
     }
 
     .timeline p {
-      color: #527b98;
+      color: #4a7191;
       font-size: 0.88rem;
       line-height: 1.45;
     }
@@ -418,10 +504,11 @@
     .note-panel {
       margin-top: 22px;
       padding: 14px 16px;
-      border-left: 2px solid var(--line);
-      background: #fbfdff;
-      color: #426d8a;
-      border-radius: 0;
+      border: 1px solid #d4e7f6;
+      border-left: 3px solid var(--blue-accent);
+      background: #f2f8fd;
+      color: #325875;
+      border-radius: var(--radius-md);
       font-size: 0.9rem;
     }
 
@@ -447,32 +534,67 @@
 
     .pub-list li::before {
       content: counter(pubs, decimal-leading-zero);
-      color: #83b6d4;
+      color: #79a7c9;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 0.74rem;
       padding-top: 2px;
     }
 
     .pub-title {
-      color: #1d4864;
-      font-weight: 600;
+      color: #17425f;
+      font-weight: 700;
       line-height: 1.38;
-      font-size: 0.93rem;
+      font-size: 0.96rem;
     }
 
     .pub-meta {
-      color: #5f8ca8;
+      color: #557e9b;
       font-size: 0.85rem;
     }
 
     .pub-link {
       display: inline;
       margin-left: 0.35rem;
-      color: #2d83b7;
+      color: #2177b0;
       font-weight: 560;
       font-size: 0.82rem;
-      border-bottom: 1px solid rgba(56, 163, 220, 0.32);
+      border-bottom: 1px solid rgba(41, 140, 209, 0.32);
       white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+
+    .pub-link:hover {
+      color: var(--blue-deep);
+      border-color: var(--blue-deep);
+    }
+
+    .badge-oral {
+      display: inline-block;
+      color: #216d9e;
+      background: #eaf3fa;
+      border: 1px solid #cde0f1;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 5px;
+      vertical-align: 0.08em;
+      line-height: 1.3;
+    }
+
+    .first-paper-note {
+      display: inline;
+      margin-left: 6px;
+      font-size: 0.83rem;
+      font-style: italic;
+      font-weight: 500;
+      color: #b87e14;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      vertical-align: 0;
     }
 
     .service-list {
@@ -489,7 +611,7 @@
     .service-list li {
       padding: 10px 0;
       border-bottom: 1px solid var(--line-soft);
-      color: #365a73;
+      color: #31526b;
       font-size: 0.92rem;
       padding-left: 0.25rem;
     }
@@ -527,9 +649,9 @@
       width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
       padding: 24px 0 42px;
-      color: #6fa6c7;
+      color: #6398bc;
       font-size: 0.9rem;
-      border-top: 1px solid var(--line-soft);
+      border-top: 1px solid var(--line);
       line-height: 1.65;
     }
 
@@ -542,11 +664,12 @@
       .topbar {
         align-items: flex-start;
         flex-direction: column;
+        gap: 12px;
       }
 
       nav {
         justify-content: flex-start;
-        gap: 12px 16px;
+        gap: 12px 18px;
       }
 
       .hero {
@@ -601,13 +724,14 @@
   <header class="topbar" aria-label="Site header">
     <a class="wordmark" href="#home" aria-label="Andong Wang home">
       <span class="wordmark-dot"></span>
-      <span>ANDONG WANG'S HOMEPAGE</span>
+      <span>ANDONG WANG</span>
     </a>
     <nav aria-label="Primary navigation">
       <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
       <a href="#experience">Experience</a>
       <a href="#service">Service</a>
-      <a href="#publications">Publications</a>
+      <a href="#funding">Grants</a>
       <a href="#research-reflections">Reflections</a>
     </nav>
   </header>
@@ -618,19 +742,13 @@
         <span class="eyebrow">Research Scientist · RIKEN AIP</span>
         <h1>Andong Wang <span class="name-cn" aria-label="Chinese name">王安东</span></h1>
         <p class="subtitle">
-          Andong is a researcher at RIKEN AIP studying the so-called tensor learning, often by extending ideas from matrices and functions to tensors. He hopes to develop ideas that are both conceptually deep and practically useful.
+          Andong is a researcher at RIKEN AIP studying <strong>tensor representation learning</strong>, often by extending foundational principles from matrices and function spaces to higher-order tensors. He hopes to develop ideas that are both <strong>conceptually deep</strong> and <strong>practically impactful</strong>.
         </p>
-        <div class="hero-actions">
-          <a class="text-link" href="#publications">Selected Publications</a>
-          <a class="email-link" href="mailto:w.a.d@outlook.com">w.a.d@outlook.com</a>
-        </div>
         <div class="tag-row" aria-label="Research keywords">
           <span class="tag">Tensor Learning</span>
-          <span class="tag">Algebraic & Geometric Methods</span>
           <span class="tag">Trustworthy Learning</span>
-          <span class="tag">Quantum Machine Learning</span>
-          <span class="tag">Negative Obstacle Detection for UGV</span>
-          <span class="tag">Intelligent Welding</span>
+          <span class="tag">AI for Science & Quantum ML</span>
+          <span class="tag">Algebraic Geometry Methods</span>
         </div>
       </div>
       <aside class="hero-aside" aria-label="A self-deprecating note">
@@ -651,30 +769,49 @@
       </div>
       <div class="two-column-text">
         <article class="text-block">
-          <h3>Data spaces · Tensor geometry</h3>
+          <h3>📐 Data spaces · Tensor geometry</h3>
           <p>
-            Algebraic and geometric structures induced by the t-product and transform-domain tensor operations, toward a geometric view of tensor learning through t-scalars, t-modules, and t-manifolds.
+            Algebraic and geometric structures induced by the <strong>(generalized) t-product</strong> and <strong>transform-domain operations</strong>, establishing a unified geometric foundation for tensor learning via <strong>t-scalars, t-modules, and t-manifolds</strong>.
           </p>
         </article>
         <article class="text-block">
-          <h3>Parameter spaces · Low-rank robustness</h3>
+          <h3>🛡️ Parameter spaces · Low-rank robustness</h3>
           <p>
-            Transformed low-rank parameterization for robust generalization, adversarial robustness, sample efficiency, and transferability in tensor neural networks and tensor regression models.
+            <strong>Transformed low-rank parameterization</strong> for <strong>robust generalization</strong>, <strong>adversarial robustness</strong>, sample efficiency, and transferability in <strong>tensor neural networks</strong> and structured regression models.
           </p>
         </article>
         <article class="text-block">
-          <h3>Function spaces · Functional tensor SVD</h3>
+          <h3>♾️ Function spaces · Functional tensor SVD</h3>
           <p>
-            Extensions of tensor decomposition/learning from discrete arrays to function spaces for functional data, multi-output learning, operator learning, lifelong learning, etc., with a focus on efficient and robust generalization under distribution shift. 
+            Extending tensor decompositions from discrete arrays to <strong>infinite-dimensional function spaces</strong>, supporting <strong>functional data analysis</strong>, <strong>operator learning</strong>, and multi-output regression under <strong>combinatorial and distribution shifts</strong>.
           </p>
         </article>
         <article class="text-block">
-          <h3>Applications · Quantum ML and Multi-Modal ML</h3>
+          <h3>⚛️ Applications · Quantum ML & Multimodal ML</h3>
           <p>
-            Quantum machine learning and Multi-Modal learning, where tensor networks provide a compact language for structured representations, prompt search, adversarial robustness, and learning from noisy or incomplete information.
+            <strong>Quantum machine learning</strong> and <strong>multimodal representation learning</strong>, leveraging tensor networks as a principled mathematical language for <strong>structured representations</strong>, prompt tuning, and <strong>robust recovery from noisy/incomplete data</strong>.
           </p>
         </article>
       </div>
+    </section>
+
+    <section id="publications" aria-label="Selected publications">
+      <div class="section-heading">
+        <h2>Selected Publications</h2>
+        <p>Selected papers on tensor geometry, robust generalization, transfer learning, and tensor recovery. 拿着张量这个锤子，他看啥都像钉子，到处锤阿锤啊锤，于是自己也成了个锤子。如果论文有误，希望邮件教育（w.a.d@outlook.com）。</p>
+      </div>
+      <ol class="pub-list">
+        <li><div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm" target="_blank" rel="noopener">Code</a></div></li> 
+        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> & Jin, Z. · ICDM Workshop 2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank" rel="noopener">Link</a> <span class="first-paper-note">(My very first paper, published after extending my PhD beyond the standard period. It looks simple now, but it came from a difficult yet formative time 😂)</span></div></li>
+      </ol>
     </section>
 
     <section id="experience" aria-label="Experience">
@@ -687,28 +824,28 @@
           <span class="time">2026 –</span>
           <div>
             <h3>Research Scientist · RIKEN AIP</h3>
-            <p>Trustworthy learning from imperfect information; in <strong><a href="https://aip.riken.jp/labs/math_intel/imperfect_inf_learn/?lang=en" target="_blank" rel="noopener">Prof. Masashi Sugiyama</a></strong>'s group, under the seamless guidance of <strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>.</p>
+            <p><strong>Trustworthy learning from imperfect information</strong>; in <strong><a href="https://aip.riken.jp/labs/math_intel/imperfect_inf_learn/?lang=en" target="_blank" rel="noopener">Prof. Masashi Sugiyama</a></strong>'s group, under the close guidance of <strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>.</p>
           </div>
         </li>
         <li>
           <span class="time">2021 – 2026</span>
           <div>
             <h3>Postdoctoral Researcher · RIKEN AIP</h3>
-            <p>Trustworthy tensor learning; advised by <strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>.</p>
+            <p><strong>Trustworthy tensor learning</strong>; advised by <strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>.</p>
           </div>
         </li>
         <li>
           <span class="time">2019 – 2022</span>
           <div>
             <h3>Postdoctoral Researcher · Guangdong University of Technology</h3>
-            <p>Robust tensor learning; advised by <strong><a href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu Zhou</a></strong>.</p>
+            <p><strong>Robust tensor learning</strong>; advised by <strong><a href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu Zhou</a></strong>.</p>
           </div>
         </li>
         <li>
           <span class="time">2012 – 2019</span>
           <div>
             <h3>Ph.D. · Nanjing University of Science and Technology</h3>
-            <p> Robust tensor recovery (2015-2019), Negative obstacle detection for UGV (2012-2015); advised by <strong><a href="https://www.patternrecognition.asia/jin/index_en.html" target="_blank" rel="noopener">Prof. Zhong Jin</a></strong>.</p>
+            <p><strong>Robust tensor recovery</strong> (2015–2019), <strong>negative obstacle detection for UGVs</strong> (2012–2015); advised by <strong><a href="https://www.patternrecognition.asia/jin/index_en.html" target="_blank" rel="noopener">Prof. Zhong Jin</a></strong>.</p>
           </div>
         </li>
         <li>
@@ -719,9 +856,6 @@
           </div>
         </li>
       </ul>
-      <p class="note-panel">
-        Research support: JSPS Early-Career Grant, KAKENHI 25K21283, 2025–2028. Selected recognition: RIKEN Research and Technology Incentive Award (Ohbu, 理研樱舞奖), 2025.
-      </p>
     </section>
 
     <section id="service" aria-label="Academic service">
@@ -731,30 +865,49 @@
       </div>
       <ol class="service-list">
         <li>Secretary, RIKEN Researcher Assembly（理化学研究所研究員会議幹事）, FY2026–FY2027.</li>
-        <li>Area Chair, International Conference on Machine Learning (ICML), 2026.</li>
+        <li>Area Chair: ICML 2026, NeurIPS 2026, ICLR 2027.</li>
+        <li>Senior Program Committee: AAAI 2027.</li>
         <li>Co-organizer, ICIAM 2023 Mini-symposium: New Trends in Tensor Networks and Tensor Optimization.</li>
         <li>Workshop Co-Chair, IEEE CAI 2024 Workshop: Tensor Models for Machine Learning.</li>
         <li>Reviewer for NeurIPS, ICML, ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS, Pattern Recognition, Neural Networks, and Machine Learning.</li>
       </ol>
     </section>
 
-<section id="publications" aria-label="Selected publications">
+    <section id="funding" aria-label="Research grants and awards">
       <div class="section-heading">
-        <h2>Selected Publications</h2>
-        <p>Selected papers on tensor geometry, robust generalization, transfer learning, and tensor recovery. 拿着张量这个锤子，他看啥都像钉子，到处锤阿锤啊锤，于是自己也成了个锤子。如果论文有误，希望邮件教育（w.a.d@outlook.com）。</p>
+        <h2>Research Grants and Awards</h2>
+        <p>Competitive research funding and selected recognition.</p>
       </div>
-      <ol class="pub-list">
-        <li><div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm" target="_blank" rel="noopener">Code</a></div></li> 
-        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020, Oral.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019, Oral.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> & Jin, Z. · ICDM Workshop 2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank" rel="noopener">Link</a></div></li>
-      </ol>
+      <ul class="timeline">
+        <li>
+          <span class="time">2026 – 2027</span>
+          <div>
+            <h3>Research Funding (PI)</h3>
+            <p>MEXT AI for Science: SPReAD Program (萌芽的挑戦研究創出事業, Grant No. 26279343), "Robust Tensor Representation Learning for High-Dimensional Scientific Data in AI for Science".</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025 – 2028</span>
+          <div>
+            <h3>Research Funding (PI)</h3>
+            <p>JSPS Early-Career Grant (KAKENHI 若手研究, Grant No. 25K21283), "Enhancing Adversarially Robust Learning via Transformed Low-rank Tensor Representations".</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025 – 2027</span>
+          <div>
+            <h3>Research Funding (Participant)</h3>
+            <p>JSPS-NSFC Bilateral Joint Research Project (Grant No. JSBP120257420), "EEG Representation Learning Based on Spatiotemporal Self-Supervised Learning".</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025/03</span>
+          <div>
+            <h3>Research Award</h3>
+            <p>RIKEN Research and Technology Incentive Award (Ohbu Award / 理研桜舞賞), "Robust Machine Learning with Advanced Tensor Decomposition Techniques".</p>
+          </div>
+        </li>
+      </ul>
     </section>
 
 
@@ -762,25 +915,26 @@
     <section id="research-reflections" aria-label="Research reflections">
       <div class="section-heading">
         <h2>Reflections from More Than a Decade of Research</h2>
-        <p>Some reflections after years of research. I am not a successful person, and perhaps not qualified to write these words. I only hope to encourage those whose work is still unseen. If your work is hard, slow, and not easily rewarded, it does not mean it has no value. Perhaps you are doing something meaningful before the world has learned how to see it. I also began on a less visible path, and after five years of being worn down by reality, slowly learned to choose what could be seen first. That choice was practical, but it made me more indebted to what remains unseen.</p>
+        <p>Personal reflections after more than a decade in research. I do not consider myself particularly successful, nor perhaps qualified to preach. I share these words simply to encourage those whose endeavors remain <strong>unseen</strong>. If your work is slow, grueling, and rarely celebrated, it does not mean it lacks value; perhaps you are building something meaningful <strong>before the world has learned how to perceive it</strong>. Having started on an invisible path and spent years being grounded by reality, I gradually learned to deliver what is visible first. That choice was pragmatic, but it has only deepened my reverence for <strong>what remains unseen</strong>.</p>
       </div>
       <div class="two-column-text">
         <article class="text-block">
-          <h3>What Becomes Visible</h3>
+          <h3>☀️ What Becomes Visible</h3>
           <p>
-            This may be a kind of survivorship bias. More tractable, faster, and more publishable problems often rise to the center of the visible system, partly because they fit short-term metrics, stable benchmarks, and results that can be neatly packaged, and partly because the system often rewards what is easiest to count rather than what is hardest to value. In many environments, such work is quickly judged as success: a paper is accepted, a grant is funded, a tenure-track review is passed. Gradually, it becomes easier to keep doing this research.
+            This may be a form of <strong>survivorship bias</strong>. Tractable, fast, and easily publishable problems naturally gravitate to the center of the visible academic system. They fit <strong>short-term metrics</strong>, standard benchmarks, and neatly packaged narratives, while academic systems inherently reward <strong>what is easiest to count over what is hardest to value</strong>. In most institutional environments, this quickly earns the label of success: a paper accepted, a grant awarded, a review passed. Gradually, momentum builds, making it steadily easier to keep doing this line of work.
           </p>
         </article>
         <article class="text-block">
-          <h3>What Remains Unseen</h3>
+          <h3>🌊 What Remains Unseen</h3>
           <p>
-            This may also be a kind of survivorship bias. Less tractable, deeper, and perhaps more ambitious problems often stay outside the visible system, not because they lack value, but because they lack short-term metrics, stable benchmarks, or results that can be neatly packaged. In some environments, such work is easily judged as failure: a PhD may not be finished, a grant may not be funded, a tenure-track review may not be passed. Slowly, it becomes much harder to continue doing research.
+            This, too, reflects a form of <strong>survivorship bias</strong>. Harder, deeper, and more foundational questions often languish in obscurity, not for lack of intrinsic value, but because they lack convenient milestones, established baselines, or quick guarantees. In conventional appraisal systems, such slow burn is too readily misjudged as failure: an extended PhD, a rejected grant, a precarious position. Gradually, friction mounts, making it disproportionately harder to sustain the exploration.
           </p>
         </article>
       </div>
       <p class="note-panel">
-        <strong>A Difficult Choice.</strong> What becomes visible as success in research is not always identical to what will remain valuable in the long run. It is often shaped by timing, presentation, community attention, and the publication system through which ideas must pass. <br />
-        Life is short, and we all carry many responsibilities, both in research and in life, some of which inevitably conflict with one another. Choosing what to pursue in research therefore remains a deeply difficult question (at least to me).
+        <strong>⚖️ A Difficult Choice.</strong> What is celebrated as immediate success in academia is seldom identical to <strong>what will endure in the long run</strong>; it is inevitably mediated by timing, presentation, community trends, and institutional publication incentives. <br />
+        <br />
+        Life is short, and our responsibilities (both scholarly and personal) often pull in opposing directions. Balancing the visible with the profound remains, at least for me, a quite difficult question. <span style="font-family: var(--font-kaiti); color: #1a4263; font-size: 0.98rem; font-weight: 500;">（深水难渡，岁月如流，何去何求。）</span>
       </p>
     </section>
 
@@ -794,16 +948,16 @@
         </a>
       </aside>
       <div class="final-note">       
-          <p style="font-weight: normal;">十年间，想搞定负障碍，一直不得其法。</p>
-          <p style="font-weight: normal;">几年来，想学代数几何，却是一塌糊涂。</p>
-          <p style="font-weight: normal;">近两年，想建模人与AI，难逃思维桎梏。</p>
-          <p style="text-align: center; font-weight: bold;">。。。。。。</p>
-          <p style="font-weight: normal;">东子人菜瘾大，谨小慎微，也经常出错。</p>
-          <p style="font-weight: normal;">曾是太平天国迷，常回想平在山兄弟们二十岁的旷世呐喊，而自己年近四十、须发渐白，却还在逃避现实困难，靠涂几页薄纸取巧偷安。</p>
-          <p style="text-align: center; font-weight: bold;">。。。。。。</p>
-          <p style="font-weight: normal;">稀里糊涂二十年，对人对己对科研，想轻轻说一句：</p> 
-          <p style="text-align: center; font-weight: normal;">进步太慢很抱歉</p>
-          <p style="text-align: center; font-weight: normal;">仍似少年磨长剑</p>
+          <p>十年间，想搞定负障碍，一直不得其法。</p>
+          <p>几年来，想学代数几何，却是一塌糊涂。</p>
+          <p>近两年，想建模人与AI，难逃思维桎梏。</p>
+          <p style="text-align: center;">。。。。。。</p>
+          <p>东子人菜瘾大，谨小慎微，也经常出错。</p>
+          <p>曾是太平天国迷，常回想平在山兄弟们二十岁的旷世呐喊，而自己年近四十、须发渐白，却还在逃避现实困难，靠涂几页薄纸取巧偷安。</p>
+          <p style="text-align: center;">。。。。。。</p>
+          <p>稀里糊涂二十年，对人对己对科研，想轻轻说一句：</p> 
+          <p style="text-align: center;">进步太慢很抱歉</p>
+          <p style="text-align: center;">仍似少年磨长剑</p>
       </div>
     </section>
 
