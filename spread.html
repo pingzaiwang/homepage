@@ -43,7 +43,7 @@
           <li><a href="#methodology">Methodology</a></li>
           <li><a href="#poc">PoC & Data</a></li>
           <li><a href="#foundations">Foundations</a></li>
-          <li><a href="#team">Team & Labs</a></li>
+          <li><a href="#citation">Citation</a></li>
         </ul>
       </nav>
 
@@ -477,59 +477,26 @@
     </div>
   </section>
 
-  <!-- Team & Labs Section -->
-  <section id="team" class="section">
+  <!-- Citation & Contact Section -->
+  <section id="citation" class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">Research Organization</div>
-        <h2>Research Team & Computing Infrastructure</h2>
+        <div class="section-tag">Project Citation</div>
+        <h2>Citation & Correspondence</h2>
+        <p class="section-desc">
+          If you utilize concepts, formulations, or empirical benchmarks from the SPReAD project in your research, please cite:
+        </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div style="display: flex; gap: 20px; align-items: flex-start;">
-            <div style="flex: 1;">
-              <h3 style="margin-bottom: 4px;">Andong Wang, Ph.D.</h3>
-              <div style="color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">
-                Principal Investigator (PI) &middot; Research Scientist
-              </div>
-              <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 12px;">
-                Research Scientist at the RIKEN Center for Advanced Intelligence Project (RIKEN AIP). Specializing in multilinear algebra, robust tensor representations, and AI for Science.
-              </p>
-              <div style="display: flex; gap: 12px; font-size: 0.88rem;">
-                <a href="mailto:w.a.d@outlook.com" class="text-link">✉️ Contact PI</a>
-                <span>&middot;</span>
-                <a href="index.html" class="text-link">Personal Homepage ↗</a>
-              </div>
-            </div>
-          </div>
+      <div class="bibtex-wrapper" style="max-width: 820px; margin: 0 auto;">
+        <div class="bibtex-header">
+          <span>BibTeX Citation</span>
+          <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy BibTeX</span>
+          </button>
         </div>
-
-        <div class="card">
-          <h3>Host Laboratory & Compute Infrastructure</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 10px;">
-            This project is hosted within the <strong>Imperfect Information Learning Team / Tensor Learning Group</strong> at RIKEN AIP (led by Prof. Qibin Zhao).
-          </p>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;">
-            Supported by the <a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link">MEXT AI for Science (SPReAD) Initiative ↗</a> (MEXT Exploratory Challenge Research Grant). Computational experiments are conducted utilizing the RIKEN AIP <strong>RAIDEN</strong> GPU cluster.
-          </p>
-        </div>
-      </div>
-
-      <!-- Citation Section -->
-      <div id="citation" style="margin-top: 48px;">
-        <h3 style="margin-bottom: 8px;">Cite this Project</h3>
-        <p style="font-size: 0.95rem; margin-bottom: 14px;">If you use concepts, code templates, or findings from the SPReAD project in your research, please cite:</p>
-        
-        <div class="bibtex-wrapper">
-          <div class="bibtex-header">
-            <span>BibTeX Citation</span>
-            <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span>Copy BibTeX</span>
-            </button>
-          </div>
-          <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
+        <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
   title        = {Robust Tensor Representation Learning for High-Dimensional Scientific Data},
   author       = {Wang, Andong},
   howpublished = {MEXT AI for Science Program: SPReAD Initiative (Grant No. 26279343)},
@@ -537,8 +504,11 @@
   year         = {2026},
   url          = {https://ai4science.riken.jp/spread-tensor}
 }</code></pre>
-        </div>
       </div>
+
+      <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 24px;">
+        Correspondence: Andong Wang (<a href="mailto:w.a.d@outlook.com" class="text-link">w.a.d@outlook.com</a>) &middot; <a href="index.html" class="text-link">Personal Homepage ↗</a>
+      </p>
     </div>
   </section>
 

@@ -47,7 +47,7 @@
           <li><a href="#methodology">研究手法</a></li>
           <li><a href="#poc">実証データ (PoC)</a></li>
           <li><a href="#foundations">研究基礎</a></li>
-          <li><a href="#team">体制・環境</a></li>
+          <li><a href="#citation">引用</a></li>
         </ul>
       </nav>
 
@@ -481,59 +481,26 @@
     </div>
   </section>
 
-  <!-- Team & Labs Section -->
-  <section id="team" class="section">
+  <!-- Citation & Contact Section -->
+  <section id="citation" class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">実施体制と研究インフラ</div>
-        <h2>研究体制および計算機環境</h2>
+        <div class="section-tag">引用情報</div>
+        <h2>プロジェクトの引用と連絡先</h2>
+        <p class="section-desc">
+          本研究のコンセプトや定式化、実証ベンチマークをご活用いただく場合は、以下の書式で引用してください：
+        </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div style="display: flex; gap: 20px; align-items: flex-start;">
-            <div style="flex: 1;">
-              <h3 style="margin-bottom: 4px;">王 安東 (Andong Wang, 博士)</h3>
-              <div style="color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">
-                研究代表者 (PI) &middot; 研究員
-              </div>
-              <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 12px;">
-                理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員。多重線形代数、頑健テンソル表現、AI for Science を専門とする。
-              </p>
-              <div style="display: flex; gap: 12px; font-size: 0.88rem;">
-                <a href="mailto:w.a.d@outlook.com" class="text-link">✉️ 連絡先</a>
-                <span>&middot;</span>
-                <a href="index.html" class="text-link">個人ホームページ ↗</a>
-              </div>
-            </div>
-          </div>
+      <div class="bibtex-wrapper" style="max-width: 820px; margin: 0 auto;">
+        <div class="bibtex-header">
+          <span>BibTeX 引用コード</span>
+          <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>BibTeX をコピー</span>
+          </button>
         </div>
-
-        <div class="card">
-          <h3>受入研究室および計算機インフラ</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 10px;">
-            本研究は、理化学研究所 AIP <strong>不完全情報学習チーム / テンソル学習グループ</strong>（チームリーダー：趙 啓斌 教授）の支援のもとで実施されます。
-          </p>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;">
-            本研究は<a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link">文部科学省 AI for Science（SPReAD）事業 ↗</a>の支援を受けて実施されています。計算機実験には理研 AIP <strong>RAIDEN</strong> GPU クラスタおよび専用クラウドリソースを活用しています。
-          </p>
-        </div>
-      </div>
-
-      <!-- Citation Section -->
-      <div id="citation" style="margin-top: 48px;">
-        <h3 style="margin-bottom: 8px;">プロジェクトの引用方法</h3>
-        <p style="font-size: 0.95rem; margin-bottom: 14px;">本研究のコンセプトやコードテンプレート、知見をご活用いただく場合は、以下の書式で引用してください：</p>
-        
-        <div class="bibtex-wrapper">
-          <div class="bibtex-header">
-            <span>BibTeX 引用コード</span>
-            <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span>BibTeX をコピー</span>
-            </button>
-          </div>
-          <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
+        <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
   title        = {Robust Tensor Representation Learning for High-Dimensional Scientific Data},
   author       = {Wang, Andong},
   howpublished = {MEXT AI for Science Program: SPReAD Initiative (Grant No. 26279343)},
@@ -541,8 +508,11 @@
   year         = {2026},
   url          = {https://ai4science.riken.jp/spread-tensor}
 }</code></pre>
-        </div>
       </div>
+
+      <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 24px;">
+        連絡先：王 安東 (<a href="mailto:w.a.d@outlook.com" class="text-link">w.a.d@outlook.com</a>) &middot; <a href="index.html" class="text-link">個人ホームページ ↗</a>
+      </p>
     </div>
   </section>
 
