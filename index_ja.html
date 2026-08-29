@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="王 安東（Andong Wang）、理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員。テンソル表現学習、代数幾何的手法、不完全情報からの高信頼学習、頑健転移、量子機械学習。" />
+  <title>王 安東 (Andong Wang) | 理化学研究所 AIP 研究員</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7fafe;
+      --paper: #ffffff;
+      --ink: #102235;
+      --ink-soft: #233b52;
+      --muted: #4a7191;
+      --muted-light: #7ca5c5;
+      --line: #bad7ee;
+      --line-soft: #e3eef8;
+      --blue: #298cd1;
+      --blue-deep: #135d94;
+      --blue-soft: #edf5fc;
+      --blue-accent: #2284c8;
+      --blue-subtle: #f0f6fc;
+      --font-klee: "Klee One", "Yu Kyokasho", serif;
+      --serif: "Times New Roman", Times, "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "BIZ UDPMincho", serif;
+      --times: "Times New Roman", Times, "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--times);
+      font-size: 0.98rem;
+      background:
+        radial-gradient(circle at 82% 4%, rgba(182, 218, 248, 0.5), transparent 28%),
+        radial-gradient(circle at 12% 16%, rgba(205, 232, 255, 0.35), transparent 22%),
+        linear-gradient(180deg, #edf6fc 0%, #f7fafe 340px),
+        var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+    .site-shell { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 24px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-transform: uppercase;
+      transition: color 0.18s ease;
+    }
+
+    .wordmark:hover {
+      color: var(--blue-deep);
+    }
+
+    .wordmark-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue-accent);
+      box-shadow: 0 0 10px rgba(34, 132, 200, 0.45);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-family: var(--times);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      padding: 4px 0;
+      position: relative;
+      transition: color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: var(--blue-deep);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue-accent);
+      border-radius: 1px;
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 46px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 28px;
+    }
+
+    .hero-title-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-aside {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .hero-portrait-card {
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
+    .hero-portrait {
+      display: block;
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #bad7ee;
+      box-shadow: 0 6px 22px rgba(19, 93, 148, 0.09);
+      background: linear-gradient(135deg, #e8f4fc, #f7fbfe);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-portrait:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(19, 93, 148, 0.13);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-bio-area {
+      width: 100%;
+    }
+
+    .hero-joke-wrapper {
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .self-joke {
+      margin: 0;
+      color: #1a3a54;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      font-family: var(--times);
+      background: linear-gradient(135deg, #f1f7fd 0%, #f9fcff 100%);
+      border: 1px solid #d2e5f5;
+      border-left: 4px solid var(--blue-accent);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      box-shadow: 0 4px 18px rgba(19, 93, 148, 0.03);
+    }
+
+    .self-joke strong {
+      font-weight: 700;
+      color: var(--blue-deep);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 4px;
+      color: var(--blue-deep);
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-left: 3px solid var(--blue-accent);
+      padding-left: 10px;
+      line-height: 1.3;
+      font-family: var(--font-klee);
+    }
+
+    .trans-disclaimer {
+      display: inline-block;
+      margin-bottom: 6px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      background: #eef6fc;
+      border: 1px solid var(--line);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: var(--font-klee);
+      line-height: 1.3;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      font-family: var(--serif);
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 100%;
+      font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .name-en {
+      display: inline-block;
+      margin-left: 0.45em;
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 0.68em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      max-width: 100%;
+      margin-top: 16px;
+      color: var(--ink-soft);
+      font-size: clamp(0.94rem, 1.4vw, 1rem);
+      line-height: 1.75;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin-top: 22px;
+      max-width: 100%;
+    }
+
+    .tag {
+      color: #175e92;
+      background: #eaf3fb;
+      border: 1px solid #cde2f3;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.86rem;
+      font-family: var(--font-klee);
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .tag:hover {
+      background: #dcecf8;
+      color: #0d4974;
+      border-color: #bad8ee;
+    }
+
+    section {
+      scroll-margin-top: 60px;
+      padding: 50px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 26px;
+      align-items: start;
+    }
+
+    .section-heading h2 {
+      color: var(--blue-deep);
+      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-heading p {
+      max-width: 1100px;
+      color: #4a7191;
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .two-column-text {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 38px;
+    }
+
+    .text-block {
+      padding-top: 14px;
+      border-top: 1px solid var(--line-soft);
+      box-shadow: inset 0 1px 0 rgba(207, 226, 242, 0.55);
+    }
+
+    .text-block h3 {
+      margin-bottom: 8px;
+      color: #17425f;
+      font-size: 1.05rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .text-block p {
+      color: #31526b;
+      font-size: 0.93rem;
+      line-height: 1.68;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .time {
+      color: #4a7191;
+      font-size: 0.90rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline h3 {
+      color: #1a2c3e;
+      font-size: 1.02rem;
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+      font-family: var(--serif);
+      font-weight: 700;
+    }
+
+    .timeline p {
+      color: #4a7191;
+      font-size: 0.90rem;
+      line-height: 1.6;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: pubs;
+      border-top: 1px solid var(--line);
+    }
+
+    .pub-list li {
+      counter-increment: pubs;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .pub-list li::before {
+      content: counter(pubs, decimal-leading-zero);
+      color: #79a7c9;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.74rem;
+      padding-top: 2px;
+    }
+
+    .pub-title {
+      color: #17425f;
+      font-weight: 700;
+      line-height: 1.4;
+      font-size: 0.96rem;
+    }
+
+    .pub-meta {
+      color: #557e9b;
+      font-size: 0.86rem;
+    }
+
+    .pub-link {
+      display: inline;
+      margin-left: 0.35rem;
+      color: #2177b0;
+      font-weight: 560;
+      font-size: 0.84rem;
+      border-bottom: 1px solid rgba(41, 140, 209, 0.32);
+      white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+
+    .pub-link:hover {
+      color: var(--blue-deep);
+      border-color: var(--blue-deep);
+    }
+
+    .badge-oral {
+      display: inline-block;
+      color: #216d9e;
+      background: #eaf3fa;
+      border: 1px solid #cde0f1;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 5px;
+      vertical-align: 0.08em;
+      line-height: 1.3;
+    }
+
+    .first-paper-note {
+      display: inline;
+      margin-left: 6px;
+      font-size: 0.88rem;
+      font-style: normal;
+      font-family: var(--font-klee);
+      color: #b87e14;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      padding: 0 0 0 1.35rem;
+      list-style: decimal-leading-zero;
+      border-top: 1px solid var(--line);
+      max-width: 840px;
+    }
+
+    .service-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line-soft);
+      color: #31526b;
+      font-size: 0.94rem;
+      padding-left: 0.25rem;
+    }
+
+    .service-list li::marker {
+      color: var(--blue-deep);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.82em;
+      font-weight: 600;
+    }
+
+    footer {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+      color: #6398bc;
+      font-size: 0.88rem;
+      border-top: 1px solid var(--line);
+      line-height: 1.65;
+    }
+
+    .visit-count {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        justify-content: flex-start;
+        gap: 12px 18px;
+      }
+
+      .hero {
+        gap: 20px;
+        padding-top: 40px;
+      }
+
+      .hero-header {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .hero-portrait-card {
+        width: 120px;
+        max-width: 120px;
+      }
+
+      .hero-portrait {
+        width: 120px;
+        height: 120px;
+      }
+
+      .two-column-text { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .site-shell, .topbar, footer { width: min(100% - 24px, var(--max)); }
+      .hero { padding: 36px 0 40px; }
+      .hero-header {
+        flex-direction: column-reverse;
+        gap: 16px;
+      }
+      .timeline li, .pub-list li { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="サイトヘッダー">
+    <a class="wordmark" href="#home" aria-label="王 安東 ホーム">
+      <span class="wordmark-dot"></span>
+      <span>ANDONG WANG · 王 安東</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#research">研究方向</a>
+      <a href="#publications">主要論文</a>
+      <a href="#experience">略歴・経歴</a>
+      <a href="#service">学会活動</a>
+      <a href="#funding">研究助成・受賞</a>
+      <a href="index.html" class="tag" style="margin-left: 6px; font-weight: 600; padding: 3px 10px; text-decoration: none;" title="Switch to English">🌐 English</a>
+    </nav>
+  </header>
+
+  <main id="home" class="site-shell">
+    <section class="hero" aria-label="自己紹介">
+      <div class="hero-header">
+        <div class="hero-title-area">
+          <span class="eyebrow">理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員</span>
+          <div style="margin-top: 2px; margin-bottom: 6px;">
+            <span class="trans-disclaimer">※ 本日本語版ページは Gemini により翻訳・作成されました</span>
+          </div>
+          <h1>王 安東 <span class="name-en">WANG Andong, Ph.D.</span></h1>
+        </div>
+        <aside class="hero-aside" aria-label="研究員肖像写真">
+          <div class="hero-portrait-card">
+            <a class="hero-portrait" href="wad_jp.png" target="_blank" rel="noopener" aria-label="肖像写真を開く">
+              <img src="wad_jp.png" alt="王 安東 肖像写真" onerror="this.src='assets/wad_jp.png';" />
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="hero-bio-area">
+        <p class="subtitle">
+          理化学研究所 AIP にて<strong>テンソル表現学習</strong>の研究に従事。行列や関数空間における基礎原理を高次テンソルへと拡張し、<strong>概念としての深さ</strong>と<strong>実用的な波及効果</strong>を兼ね備えた数理理論の構築を目指しています。
+        </p>
+        <div class="tag-row" aria-label="研究キーワード">
+          <span class="tag">テンソル学習</span>
+          <span class="tag">高信頼学習</span>
+          <span class="tag">AI for Science & 量子機械学習</span>
+          <span class="tag">代数幾何的手法</span>
+        </div>
+      </div>
+
+      <div class="hero-joke-wrapper">
+        <p class="self-joke">
+          🤖 <strong>初期の工学時代：</strong> 理由は不明だが動いていた。<br />
+          🤯 <strong>後期の理論時代：</strong> 理由は解明したが動かない。<br />
+          🫠 <strong>現在の野望：</strong> 双方の伝統を融合させ、理由も分からず、何ひとつ動かない境地へ。
+        </p>
+      </div>
+    </section>
+
+    <section id="research" aria-label="研究概要">
+      <div class="section-heading">
+        <h2>研究の主要テーマ</h2>
+        <p>表現構造、頑健性、転移性、および不完全情報からの高信頼な学習に関する主要テーマの概観。</p>
+      </div>
+      <div class="two-column-text">
+        <article class="text-block">
+          <h3>📐 データ空間 · テンソル幾何</h3>
+          <p>
+            <strong>(generalized) t-product</strong> および変換領域演算が誘導する代数幾何構造を解明し、<strong>t-スカラー、t-加群、t-多様体</strong>を通じたテンソル学習の統一的幾何基盤を構築。
+          </p>
+        </article>
+        <article class="text-block">
+          <h3>🛡️ パラメータ空間 · 低ランク頑健性</h3>
+          <p>
+            <strong>変換領域低ランクパラメータ化</strong>による<strong>頑健な汎化性能</strong>、<strong>敵対的頑健性</strong>、サンプル効率の向上、および<strong>テンソルニューラルネットワーク</strong>や構造化回帰モデルの転移性向上。
+          </p>
+        </article>
+        <article class="text-block">
+          <h3>♾️ 関数空間 · 関数テンソルSVD</h3>
+          <p>
+            テンソル分解を離散配列から<strong>無限次元関数空間</strong>へと拡張し、<strong>関数データ解析</strong>、<strong>作用素学習</strong>、および<strong>組合せシフト・分布シフト</strong>下での多出力回帰を支援。
+          </p>
+        </article>
+        <article class="text-block">
+          <h3>⚛️ 応用 · 量子機械学習 & マルチモーダル</h3>
+          <p>
+            <strong>量子機械学習</strong>および<strong>マルチモーダル表現学習</strong>において、テンソルネットワークを<strong>構造化表現</strong>、プロンプトチューニング、および<strong>高ノイズ・欠損データからの頑健復元</strong>のための数理言語として活用。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" aria-label="主要論文">
+      <div class="section-heading">
+        <h2>主要論文</h2>
+        <p>テンソル幾何、頑健汎化、転移学習、テンソル復元に関する主要論文。論文に誤り等ございましたら、メールにてご教示いただけますと幸いです（w.a.d@outlook.com）。</p>
+      </div>
+      <ol class="pub-list">
+        <li><div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm" target="_blank" rel="noopener">Code</a></div></li> 
+        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> & Jin, Z. · ICDM Workshop 2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank" rel="noopener">Link</a> <span class="first-paper-note">（博士課程延期を経てようやく発表に至った人生最初の論文。素朴ながらも、決して容易ではなかった研究生活の原点です）</span></div></li>
+      </ol>
+    </section>
+
+    <section id="experience" aria-label="略歴・経歴">
+      <div class="section-heading">
+        <h2>略歴・研究経歴</h2>
+        <p>学歴および研究機関での着任履歴。</p>
+      </div>
+      <ul class="timeline">
+        <li>
+          <span class="time">2026 – 現在</span>
+          <div>
+            <h3>研究員 · 理化学研究所 革新知能統合研究センター（RIKEN AIP）</h3>
+            <p><strong>不完全情報からの高信頼学習</strong>：<strong><a href="https://aip.riken.jp/labs/math_intel/imperfect_inf_learn/?lang=ja" target="_blank" rel="noopener">杉山 将 教授</a></strong>グループ、<strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>との緊密な連携・共同研究のもとで研究に従事。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2021 – 2026</span>
+          <div>
+            <h3>特別研究員（ポスドク）· 理化学研究所 革新知能統合研究センター（RIKEN AIP）</h3>
+            <p><strong>高信頼テンソル学習</strong>：受入研究者 <strong><a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Prof. Qibin Zhao</a></strong>。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2019 – 2022</span>
+          <div>
+            <h3>博士後研究員（ポスドク）· 広東工業大学</h3>
+            <p><strong>頑健テンソル学習</strong>：受入研究者 <strong><a href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu Zhou</a></strong>。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2012 – 2019</span>
+          <div>
+            <h3>博士課程（工学）· 南京理工大学</h3>
+            <p><strong>頑健テンソル復元</strong>（2015–2019）、<strong>無人地上車両（UGV）の負障害物検知</strong>（2012–2015）：指導教員 <strong><a href="https://www.patternrecognition.asia/jin/index_en.html" target="_blank" rel="noopener">Prof. Zhong Jin</a></strong>。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2008 – 2012</span>
+          <div>
+            <h3>学士（ソフトウェア工学）· 南京理工大学</h3>
+            <p>ソフトウェア工学専攻。</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="service" aria-label="学会活動">
+      <div class="section-heading">
+        <h2>学会活動・社会貢献</h2>
+        <p>国際会議の運営・エリアチェアおよび査読活動。</p>
+      </div>
+      <ol class="service-list">
+        <li>理化学研究所 研究員会議 幹事（FY2026–FY2027）。</li>
+        <li>Area Chair: ICML 2026, NeurIPS 2026, ICLR 2027。</li>
+        <li>Senior Program Committee: AAAI 2027。</li>
+        <li>オーガナイザー: ICIAM 2023 ミニシンポジウム「New Trends in Tensor Networks and Tensor Optimization」。</li>
+        <li>ワークショップ Co-Chair: IEEE CAI 2024「Tensor Models for Machine Learning」。</li>
+        <li>査読委員: NeurIPS, ICML, ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS, Pattern Recognition, Neural Networks, Machine Learning 等。</li>
+      </ol>
+    </section>
+
+    <section id="funding" aria-label="研究助成・受賞">
+      <div class="section-heading">
+        <h2>研究助成・受賞</h2>
+        <p>獲得した競争的研究資金および研究表彰。</p>
+      </div>
+      <ul class="timeline">
+        <li>
+          <span class="time">2026 – 2027</span>
+          <div>
+            <h3>研究助成（研究代表者 / PI）</h3>
+            <p>文部科学省 AI for Science 萌芽的挑戦研究創出事業（SPReAD, 課題番号: 26279343）「高次元科学データにおける頑健テンソル表現学習」 <a class="pub-link" href="spread_ja.html" target="_blank" rel="noopener">[課題ページ ↗]</a> <a class="pub-link" href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener">[文科省ポータル ↗]</a>。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025 – 2028</span>
+          <div>
+            <h3>研究助成（研究代表者 / PI）</h3>
+            <p>日本学術振興会 科学研究費助成事業 若手研究（KAKENHI 課題番号: 25K21283）「変換領域低ランクテンソル表現による敵対的頑健学習の強化」。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025 – 2027</span>
+          <div>
+            <h3>研究助成（研究分担者）</h3>
+            <p>JSPS-NSFC 二国間交流事業 共同研究（課題番号: JSBP120257420）「時空間自己教師あり学習に基づく脳波（EEG）表現学習」。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2025/03</span>
+          <div>
+            <h3>研究表彰</h3>
+            <p>理化学研究所 研究・技術奨励賞（理研桜舞賞）「先進的テンソル分解技術による頑健な機械学習」。</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>© <span id="year">2026</span> Andong Wang (王 安東) · Researcher @ RIKEN AIP. <span class="visit-count">Visits: <span id="goatcounter-visits">—</span></span></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <script>
+    (function() {
+      var target = document.getElementById("goatcounter-visits");
+      if (!target) return;
+
+      var path = window.location.pathname || "/";
+      var url = "https://antonw.goatcounter.com/counter/" + encodeURIComponent(path) + ".json";
+
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) throw new Error("counter unavailable");
+          return response.json();
+        })
+        .then(function(data) {
+          if (data && data.count) {
+            target.textContent = data.count;
+          }
+        })
+        .catch(function() {
+          target.textContent = "—";
+        });
+    })();
+  </script>
+
+  <script data-goatcounter="https://antonw.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
