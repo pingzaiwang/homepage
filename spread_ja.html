@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPReAD | 高次元科学データにおける頑健テンソル表現学習</title>
+  <meta name="description" content="文部科学省 AI for Science 萌芽的挑戦研究創出事業（SPReAD, 課題番号: 26279343）「高次元科学データにおける頑健テンソル表現学習」公式プロジェクトページ。研究代表者：王 安東（理化学研究所 AIP）。">
+  <meta name="author" content="王 安東 (Andong Wang)">
+
+  <!-- Google Fonts & MathJax -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', var(--font-sans);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="nav-brand">
+        <span class="brand-title">SPReAD</span>
+        <span class="brand-badge">文科省 AI for Science</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#overview">概要</a></li>
+          <li><a href="#methodology">研究手法</a></li>
+          <li><a href="#poc">実証データ (PoC)</a></li>
+          <li><a href="#foundations">研究基礎</a></li>
+          <li><a href="#team">体制・環境</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Switch to English -->
+        <a href="spread.html" class="lang-btn" title="Switch to English">
+          <span>🌐</span> <span>English</span>
+        </a>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="grant-pill">
+        <span class="pulse-dot"></span>
+        <span>文部科学省 科学研究革新プログラム &middot; SPReAD 創出事業（課題番号: 26279343）</span>
+        <a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link" style="margin-left: 6px; font-size: 0.8rem;" title="文部科学省 SPReAD 公式サイト">公式ポータル ↗</a>
+      </div>
+      
+      <h1 class="hero-title">
+        高次元科学データにおける頑健テンソル表現学習
+      </h1>
+      
+      <p class="hero-subtitle">
+        多次元物理構造の保存により、少サンプル・高ノイズ・被験者間シフト下での高信頼・高解釈性 AI を実現する
+      </p>
+
+      <div class="pi-affiliation-box">
+        <div><strong>研究代表者 (PI):</strong> 王 安東 (Andong Wang, 博士)</div>
+        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
+          理化学研究所 革新知能統合研究センター（RIKEN AIP）不完全情報学習チーム 研究員
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="#poc" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          検証データと PoC を見る
+        </a>
+        <a href="#methodology" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          手法の数理体系
+        </a>
+        <a href="#citation" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          BibTeX 引用
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Summary Section -->
+  <section id="overview" class="section">
+    <div class="container">
+      <div class="exec-box">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          プロジェクト概要と研究の目的
+        </h3>
+        <p style="margin-bottom: 0.85rem;">
+          神経生理学や生体医用工学、複雑系ダイナミクスにおける科学的観測は、多次元の物理法則によって支配されており、計測アレイは<strong>空間配置、時間発展、周波数応答、試行間変動、被験者個体差</strong>が密接に結合した多重線形構造を呈します。一般的な機械学習はデータが豊富なユークリッド空間で極めて高い成果を上げていますが、科学的応用の現場はしばしば<strong>小規模な実験コホート、非定常なドメインシフト、電極脱落等のセンサー擾乱</strong>という固有の困難を伴います。
+        </p>
+        <p style="margin-bottom: 0;">
+          本研究は、<strong>文部科学省 AI for Science 萌芽的挑戦研究創出事業（SPReAD）</strong>の支援を受け、<strong>多次元物理構造を保存する頑健テンソル表現学習</strong>の理論と実証的基礎を探究します。多モードテンソルパラメータ化、変換ドメインでのスペクトル正則化（$t$-積代数や双対スペクトルスパース性）、および分散適応型最適化を統合することで、少サンプル下での緊密な汎化保証、センサー欠損に対する耐性、ならびに物理因子の明示的解離を両立する数理枠組みを構築します。
+        </p>
+      </div>
+
+      <div class="section-header" style="margin-top: 48px;">
+        <div class="section-tag">科学的妥当性と表現理論</div>
+        <h2>科学 AI における帰納バイアスと表現構造</h2>
+        <p class="section-desc">
+          異なる表現パラダイムにおける幾何学的仮定、サンプル複雑度、および擾乱耐性の比較分析。
+        </p>
+      </div>
+
+      <!-- 3-Pillar Comparison Cards -->
+      <div class="grid-3">
+        <div class="card comparison-card negative">
+          <span class="comparison-badge badge-neg">従来のベクトル化・展開</span>
+          <h3>ユークリッド空間への平坦化</h3>
+          <p>
+            高階テンソルを 1D ベクトルや 2D 行列へ平坦化。独立同分布な表形式データでは有効ですが、連続観測データでは座標非依存の幾何学的対称性が損なわれ、非制約パラメータ数が $O(CTFd)$ へと急激に爆発します。
+          </p>
+        </div>
+
+        <div class="card comparison-card warning">
+          <span class="comparison-badge badge-warn">汎用高容量深層モデル</span>
+          <h3>無制約な表現容量</h3>
+          <p>
+            大規模データ下では強力な普遍近似能力を持ちますが、サンプルが極めて限られる科学実験コホート（$N \ll D$）では仮説空間が広がり、Rademacher 汎化界が緩み電極脱落等に対して脆弱になります。
+          </p>
+        </div>
+
+        <div class="card comparison-card positive">
+          <span class="comparison-badge badge-pos">構造保存型テンソル学習</span>
+          <h3>代数的・スペクトル的帰納バイアス</h3>
+          <p>
+            多重線形多様体を直接定式化。低ランク分解と変換ドメインのスペクトル事前分布により仮説空間を制約し、少サンプル汎化界を引き締め、電極欠損耐性と物理因子の解離を両立します。
+          </p>
+        </div>
+      </div>
+
+      <!-- Figure 1: Training-Free Premise Probes -->
+      <div class="figure-container zoomable-fig" data-caption="図1: 学習不要な前提検証プローブ（BNCI vs Sleep-EDF における結合性・分散性解析、クリックで拡大）" style="margin-top: 36px;">
+        <div class="figure-img-wrapper">
+          <img src="assets/fig1_structural_gap.png" alt="Training-Free Premise Probes on BNCI Motor Imagery and Sleep-EDF">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            クリックして拡大
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>図 1（学習不要な前提検証プローブ）:</strong> <em>(a) 結合プローブ</em>: 振幅-位相結合（AAC/PAC）は BNCI 運動想起ではチャンスレベル（25.9% vs. 25%）ですが、Sleep-EDF では極めて高い識別力を持ちます（65.5% / 53.9% vs. 20%）。<em>(b) 分散プローブ</em>: バンドごとの管状分散が、重厚な深層学習を行う前に Sleep における +18.6 pp の優位性（$p < 0.01$）を正確に予見します。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Methodology Section -->
+  <section id="methodology" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">中核的手法体系</div>
+        <h2>SPReAD テンソル表現学習の全体体系</h2>
+        <p class="section-desc">
+          多モード科学テンソル化、変換ドメインスペクトル正則化、頑健最適化、解釈可能因子分解の 4 本の柱。
+        </p>
+      </div>
+
+      <!-- Overall Architecture (Figure 2) -->
+      <div class="figure-container zoomable-fig" data-caption="図2: 頑健テンソル表現学習の全体技術体系とロードマップ（MEXT SPReAD フレームワーク）">
+        <div class="figure-img-wrapper">
+          <img src="assets/overall_framework.png" alt="SPReAD Project Overall Framework Architecture">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            クリックして高解像度表示
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>図 2（SPReAD 全体技術体系）:</strong> (1) 多モード科学テンソル化； (2) $t$-SVD および双対スペクトルスパース性に基づく変換ドメイン正則化； (3) ノイズ・電極欠損・被験者間シフトに対する頑健最適化； (4) 物理因子の明示的解離と臨床・科学的知見の創出。
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 32px;">
+        <div class="card">
+          <div class="card-icon-box icon-blue">01</div>
+          <h3>多モード科学テンソル化</h3>
+          <p>
+            頭蓋内脳波などの物理連続観測アレイを直接高階テンソル $\mathcal{X} \in \mathbb{R}^{C \times T \times F \times N \times S}$ として定式化し、座標非依存の多次元物理対称性を保ちます。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-teal">02</div>
+          <h3>変換ドメインでのスペクトル正則化</h3>
+          <p>
+            代数的 <strong>$t$-積テンソル代数</strong> と <strong>双対スペクトルスパース性</strong> を周波数・モード軸に適用し、物理ダイナミクスを反映したコンパクトな特異スペクトルを誘導します。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-purple">03</div>
+          <h3>過酷な擾乱に対する頑健学習</h3>
+          <p>
+            管状分散バッチ正規化、Schatten-$p$ ノルム、サンプル再重み付けを統合し、最大 50% の電極欠損下でも安定した予測精度を維持します。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-amber">04</div>
+          <h3>解釈可能な因子・ランクプロファイリング</h3>
+          <p>
+            電極空間トポロジー、時間波形、周波数エンベロープに対応する因子行列を明示的に抽出し、獲得された管状ランクを物理複雑性の指標とします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof of Concept (PoC) Section -->
+  <section id="poc" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">生体信号による検証</div>
+        <h2>概念実証 (PoC): 神経電位信号における幾何学的検証</h2>
+        <p class="section-desc">
+          公開ベンチマーク（Sleep-EDF および BNCI-2a 運動想起）における厳格な被験者交差検証（LOSO）と単一変数幾何アブレーション。
+        </p>
+      </div>
+
+      <!-- PoC Diagram (Figure 3) -->
+      <div class="figure-container zoomable-fig" data-caption="図3: 単一変数幾何・メカニズム要因分解（Leave-One-Subject-Out 厳格評価、クリックで拡大）">
+        <div class="figure-img-wrapper">
+          <img src="assets/fig3_preliminary_evidence.png" alt="Single-Variable Geometry & Mechanism Decomposition on BNCI and Sleep-EDF">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            クリックして拡大
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>図 3（幾何・メカニズムの単一変数分解）:</strong> <em>(a) BNCI2014_001 運動想起 ($n=9$)</em>: 誠実な差なし結果を確認（Product $58.4\%$ vs $+L$ $57.0\%$ vs Tubal $56.3\%$, 全て $p > 0.65$）。<em>(b) Sleep-EDF ($n=12$, LOSO)</em>: Tubal 幾何が $78.2 \pm 5.5\%$ を達成（対 Product $48.0\%$, <strong>$+30.3\text{ pp}$, 対応のある $p = 0.001$</strong>）。これは結合単独（$+6.0\text{ pp}$）ではなく<strong>管状分散単独（$+24.3\text{ pp}$, $p = 0.013$）</strong>により主導されています。
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 28px;">
+        <div class="card">
+          <h3>なぜ頭蓋内脳波 (iEEG) が AI4Science の試金石となるか</h3>
+          <p>
+            頭蓋内脳波は高い時空間解像度を持つ一方、科学データが抱える典型的な困難を極端に凝縮しています：
+          </p>
+          <ul style="color: var(--text-secondary); margin-bottom: 1.25rem; padding-left: 20px;">
+            <li style="margin-bottom: 8px;"><strong>極端なサンプル希少性:</strong> てんかん発作焦点（SOZ）の臨床アノテーションは専門医の診断を要し、症例数が極めて限定的。</li>
+            <li style="margin-bottom: 8px;"><strong>多モード結合幾何:</strong> 電極グリッド、特異な律動周波数帯、過渡的発作波形が複雑に結合。</li>
+            <li style="margin-bottom: 8px;"><strong>被験者間の電極配置差異:</strong> 患者ごとに電極留置位置が異なり、ドメインシフトが大きい。</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-primary);">
+          <h3>180 日間 PoC における主要検証指標</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 14px;">
+            サンプル効率、ノイズ耐性、被験者間汎化性を多角的にストレステスト：
+          </p>
+          <div style="background: var(--bg-tertiary); padding: 18px; border-radius: var(--radius-md);">
+            <ul style="color: var(--text-secondary); font-size: 0.92rem; padding-left: 18px;">
+              <li style="margin-bottom: 8px;"><strong>識別性能:</strong> SOZ 局在化における Balanced Accuracy、AUC、F1 スコア。</li>
+              <li style="margin-bottom: 8px;"><strong>電極脱落耐性曲線:</strong> ランダム電極欠損率 ($0\% \to 50\%$) に対する性能安定性。</li>
+              <li style="margin-bottom: 8px;"><strong>被験者間汎化性:</strong> Leave-One-Subject-Out (LOSO) 交差検証。</li>
+              <li style="margin-bottom: 0;"><strong>因子の解釈性:</strong> 抽出された空間-スペクトルテンソル因子と臨床診断の整合性。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Roadmap & Milestones -->
+  <section id="roadmap" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">研究開発計画</div>
+        <h2>180 日間の実施計画とマイルストーン</h2>
+        <p class="section-desc">
+          文部科学省 SPReAD 支援期間におけるテンソル基礎構築から成果公開・知見還元までの 4 段階の推進計画。
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">第 1 ～ 45 日</span>
+            <h3>フェーズ 1: 多モード連続テンソル化と $t$-SVD パイプラインの確立</h3>
+            <p>
+              標準頭蓋内脳波および生理電位信号のテンソル化パイプラインを構築。$t$-積代数カーネルおよび自動時周波数分解モジュールを実装。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">第 46 ～ 105 日</span>
+            <h3>フェーズ 2: 変換ドメイン正則化と双対スペクトルスパース性の導入</h3>
+            <p>
+              双対スペクトルスパース性正則化および学習可能なユニタリ変換層を統合。少サンプル条件下での Rademacher 汎化誤差界を導出。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">第 106 ～ 150 日</span>
+            <h3>フェーズ 3: 頑健最適化と被験者間クロスドメイン汎化の検証</h3>
+            <p>
+              欠損電極シミュレーション ($10\% \to 50\%$) による過酷なストレステストを実施。異種患者コホート間での転移性能を検証。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">第 151 ～ 180 日</span>
+            <h3>フェーズ 4: 成果統合、臨床データ実証とコミュニティ知見還元</h3>
+            <p>
+              実証結果の総括、モジュール化された PyTorch/NumPy テンソルコードテンプレートのオープンソース公開、成果報告会での発表。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Groundwork & Supporting References Section -->
+  <section id="foundations" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">技術的背景と参考文献</div>
+        <h2>研究基礎と関連知見 (Technical Groundwork)</h2>
+        <p class="section-desc">
+          本 SPReAD 課題の探究を進める上で、数理モデル・アルゴリズム設計・生体計測の基礎となる先行技術知見。
+        </p>
+      </div>
+
+      <!-- Ref 1: ICML 2026 -->
+      <div class="pub-card">
+        <span class="pub-badge">技術的参考文献 · スペクトル正則化</span>
+        <div class="pub-title">Refining Dual Spectral Sparsity in Transformed Tensor Singular Values</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Haonan Huang, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">International Conference on Machine Learning (ICML), 2026.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            本論文は、直交変換・ユニタリ変換下における多次元テンソルの特異値分布の性質を数理的に解析しています。適切な変換ドメインを選択することで、構造化データに対してコンパクトなスペクトル表現が誘導される理論的条件を明らかにしました。本 SPReAD 課題では、この知見を双対スペクトル正則化を設計するための数理的参考として活用しています。
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2026refining,\n  title={Refining Dual Spectral Sparsity in Transformed Tensor Singular Values},\n  author={Wang, Andong and Qiu, Yuning and Huang, Haonan and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={ICML},\n  year={2026}\n}')">BibTeX コピー</button>
+        </div>
+      </div>
+
+      <!-- Ref 2: NeurIPS 2025 -->
+      <div class="pub-card">
+        <span class="pub-badge">技術的参考文献 · t-積代数</span>
+        <div class="pub-title">Towards a Geometric Understanding of Tensor Learning via the t-Product</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Haonan Huang, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">Advances in Neural Information Processing Systems (NeurIPS), 2025.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            本研究は、可換環上の $t$-積テンソル多様体が持つ幾何学的および代数的な構造特性を検討したものです。多重線形演算が表現容量や多様体の幾何学的性質に与える影響について理論的な知見を提示しました。本課題における多モードテンソルパラメータ化の代数的基底として位置づけられています。
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2025geometric,\n  title={Towards a Geometric Understanding of Tensor Learning via the t-Product},\n  author={Wang, Andong and Qiu, Yuning and Huang, Haonan and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={NeurIPS},\n  year={2025}\n}')">BibTeX コピー</button>
+        </div>
+      </div>
+
+      <!-- Ref 3: ICML 2025 -->
+      <div class="pub-card">
+        <span class="pub-badge">技術的参考文献 · 部分空間遷移</span>
+        <div class="pub-title">Low-Rank Tensor Transitions (LoRT) for Transferable Tensor Regression</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">International Conference on Machine Learning (ICML), 2025.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            本論文は、テンソル係数空間におけるドメイン間の遷移を記述するための低ランク作用素を提案しています。異なる実験環境やデータ源の間で構造化モデルを効率的に適応・転移させるアルゴリズムを構築しました。本課題において、被験者間シフトに対処するアプローチの技術的参考知見として参照されています。
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2025lowrank,\n  title={Low-Rank Tensor Transitions (LoRT) for Transferable Tensor Regression},\n  author={Wang, Andong and Qiu, Yuning and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={ICML},\n  year={2025}\n}')">BibTeX コピー</button>
+        </div>
+      </div>
+
+      <!-- Ref 4: NeurIPS 2023 -->
+      <div class="pub-card">
+        <span class="pub-badge">技術的参考文献 · 汎化バウンド</span>
+        <div class="pub-title">Transformed Low-Rank Parameterization Can Help Robust Generalization for Tensor Neural Networks</div>
+        <div class="pub-authors">Andong Wang, Chao Li, Meng Bai, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">Advances in Neural Information Processing Systems (NeurIPS), 2023.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            本研究は、テンソル構造を持つニューラルネットワークの汎化誤差上界について数理的解析を行っています。低ランク分解の前にモード変換を施すことで、Rademacher 複雑度の上界が引き締まることを理論的に示しました。本課題における小規模科学データでのサンプル効率と頑健性を考察するための予備的理論として利用されています。
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2023transformed,\n  title={Transformed Low-Rank Parameterization Can Help Robust Generalization for Tensor Neural Networks},\n  author={Wang, Andong and Li, Chao and Bai, Meng and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={NeurIPS},\n  year={2023}\n}')">BibTeX コピー</button>
+        </div>
+      </div>
+
+      <!-- Ref 5: BSPC 2026 (生体医用工学) -->
+      <div class="pub-card">
+        <span class="pub-badge">技術的参考文献 · 神経計測ベースライン</span>
+        <div class="pub-title">Classification of Epileptic Seizure Onset Zone from iEEG by Reweighting Augmented Samples</div>
+        <div class="pub-authors">Xuyang Zhao, Qibin Zhao, Andong Wang, Hidenori Sugano, Toshihisa Tanaka</div>
+        <div class="pub-venue">Biomedical Signal Processing and Control, Vol. 120, 2026.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            本論文は、難治性てんかん患者の頭蓋内脳波（iEEG）臨床データから発作焦点を同定するための機械学習手法を検証しています。電極ノイズや希少な臨床サンプルといった実測環境における実践的課題と対策を報告しました。本課題における生体神経信号の概念実証（PoC）を進める上での実証的背景として参照されています。
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@article{zhao2026classification,\n  title={Classification of epileptic seizure onset zone from iEEG by reweighting augmented samples},\n  author={Zhao, Xuyang and Zhao, Qibin and Wang, Andong and Sugano, Hidenori and Tanaka, Toshihisa},\n  journal={Biomedical Signal Processing and Control},\n  volume={120},\n  pages={110105},\n  year={2026}\n}')">BibTeX コピー</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community & Know-how Sharing -->
+  <section id="community" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">オープンサイエンスとコミュニティ貢献</div>
+        <h2>SPReAD コミュニティへの知見還元と展開</h2>
+        <p class="section-desc">
+          構造認識型 AI の実践的ノウハウを体系化し、物理学・生命科学・神経工学などの幅広い科学領域へ展開。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>再利用可能なコードテンプレート</h3>
+          <p>
+            連続時系列データの多モードテンソル化を迅速に行う PyTorch / NumPy スクリプト群、および自動時周波数変換モジュールをオープンソース公開。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>実践的ベストプラクティス指針</h3>
+          <p>
+            対象データの物理対称性に応じた、ベクトル化・Tucker/CP 分解・$t$-積代数の適切なモデル選定基準を明確に提示。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>他分野展開ワークフロー</h3>
+          <p>
+            神経工学・iEEG で確立したテンソル学習検証プロトコルを、気候変動データや生物物理ダイナミクスなどの他科学領域へ波及。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team & Labs Section -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">実施体制と研究インフラ</div>
+        <h2>研究体制および計算機環境</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 4px;">王 安東 (Andong Wang, 博士)</h3>
+              <div style="color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">
+                研究代表者 (PI) &middot; 研究員
+              </div>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 12px;">
+                理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員。多重線形代数、頑健テンソル表現、AI for Science を専門とする。
+              </p>
+              <div style="display: flex; gap: 12px; font-size: 0.88rem;">
+                <a href="mailto:w.a.d@outlook.com" class="text-link">✉️ 連絡先</a>
+                <span>&middot;</span>
+                <a href="index.html" class="text-link">個人ホームページ ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>受入研究室および計算機インフラ</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 10px;">
+            本研究は、理化学研究所 AIP <strong>不完全情報学習チーム / テンソル学習グループ</strong>（チームリーダー：趙 啓斌 教授）の支援のもとで実施されます。
+          </p>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;">
+            本研究は<a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link">文部科学省 AI for Science（SPReAD）事業 ↗</a>の支援を受けて実施されています。計算機実験には理研 AIP <strong>RAIDEN</strong> GPU クラスタおよび専用クラウドリソースを活用しています。
+          </p>
+        </div>
+      </div>
+
+      <!-- Citation Section -->
+      <div id="citation" style="margin-top: 48px;">
+        <h3 style="margin-bottom: 8px;">プロジェクトの引用方法</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 14px;">本研究のコンセプトやコードテンプレート、知見をご活用いただく場合は、以下の書式で引用してください：</p>
+        
+        <div class="bibtex-wrapper">
+          <div class="bibtex-header">
+            <span>BibTeX 引用コード</span>
+            <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>BibTeX をコピー</span>
+            </button>
+          </div>
+          <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
+  title        = {Robust Tensor Representation Learning for High-Dimensional Scientific Data},
+  author       = {Wang, Andong},
+  howpublished = {MEXT AI for Science Program: SPReAD Initiative (Grant No. 26279343)},
+  institution  = {RIKEN Center for Advanced Intelligence Project (RIKEN AIP)},
+  year         = {2026},
+  url          = {https://ai4science.riken.jp/spread-tensor}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        <strong>SPReAD: 高次元科学データにおける頑健テンソル表現学習</strong>
+      </p>
+      <p class="footer-text">
+        本研究は、文部科学省 (MEXT) 科学研究革新プログラム「AI for Science 萌芽的挑戦研究創出事業（SPReAD）」(課題番号: 26279343) の支援を受けて実施されています。
+      </p>
+      <p class="footer-text" style="font-size: 0.8rem; margin-top: 10px; color: var(--accent-secondary);">
+        ※ 本日本語版ページは Gemini により翻訳・作成されました（Translated by Gemini）。
+      </p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal Overlay -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-container">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close image">&#10005;</button>
+      <img id="modal-img" src="" alt="Expanded View">
+      <div id="modal-caption" class="figure-caption" style="text-align: center; margin-top: 12px;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-msg">クリップボードにコピーしました</span>
+  </div>
+
+  <!-- Interactive Script -->
+  <script src="assets/script.js"></script>
+</body>
+</html>

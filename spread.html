@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPReAD | Robust Tensor Representation Learning for High-Dimensional Scientific Data</title>
+  <meta name="description" content="MEXT AI for Science SPReAD Project (Grant No. 26279343): Robust Tensor Representation Learning for High-Dimensional Scientific Data. Principal Investigator: Andong Wang, Ph.D. (RIKEN AIP).">
+  <meta name="author" content="Andong Wang">
+
+  <!-- Google Fonts & MathJax -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="nav-brand">
+        <span class="brand-title">SPReAD</span>
+        <span class="brand-badge">MEXT AI for Science</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#poc">PoC & Data</a></li>
+          <li><a href="#foundations">Foundations</a></li>
+          <li><a href="#team">Team & Labs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Switch to Japanese -->
+        <a href="spread_ja.html" class="lang-btn" title="日本語版へ切り替え">
+          <span>🇯🇵</span> <span>日本語</span>
+        </a>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="grant-pill">
+        <span class="pulse-dot"></span>
+        <span>MEXT AI for Science Program &middot; SPReAD Initiative (Grant No. 26279343)</span>
+        <a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link" style="margin-left: 6px; font-size: 0.8rem;" title="MEXT SPReAD Official Portal">Official Portal ↗</a>
+      </div>
+      
+      <h1 class="hero-title">
+        Robust Tensor Representation Learning for High-Dimensional Scientific Data
+      </h1>
+      
+      <p class="hero-subtitle">
+        Preserving multi-way continuum structures for sample-efficient, noise-resilient, and physically interpretable AI in data-scarce scientific discovery.
+      </p>
+
+      <div class="pi-affiliation-box">
+        <div><strong>Principal Investigator (PI):</strong> Andong Wang, Ph.D.</div>
+        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
+          Research Scientist, Imperfect Information Learning Team, RIKEN Center for Advanced Intelligence Project (RIKEN AIP)
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="#poc" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          Explore PoC & Data
+        </a>
+        <a href="#methodology" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          View Methodology
+        </a>
+        <a href="#citation" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          BibTeX Citation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Summary Section -->
+  <section id="overview" class="section">
+    <div class="container">
+      <div class="exec-box">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Executive Summary & Scientific Scope
+        </h3>
+        <p style="margin-bottom: 0.85rem;">
+          Scientific measurements across neuroscience, medical engineering, and complex physical dynamics are governed by multi-dimensional laws, yielding observation arrays with coupled <strong>spatial, temporal, spectral, trial-wise, and subject-specific</strong> modes. Standard machine learning models excel in data-abundant Euclidean domains; however, scientific applications operate under <strong>sample-constrained cohorts, non-stationary domain shifts, and physical sensor perturbations</strong>.
+        </p>
+        <p style="margin-bottom: 0;">
+          Supported by the <strong>MEXT AI for Science SPReAD Program</strong>, this project investigates <strong>structure-preserving robust tensor representation learning</strong>. By integrating multi-mode tensor parameterization, transform-domain spectral regularization ($t$-product algebra and dual spectral sparsity), and dispersion-adaptive robust optimization, we formulate a mathematical framework delivering tight generalization bounds, resilience to sensor outages, and explicit physical factor disentanglement.
+        </p>
+      </div>
+
+      <div class="section-header" style="margin-top: 48px;">
+        <div class="section-tag">Scientific Rationale & Representation Theory</div>
+        <h2>Inductive Biases and Representation Structure in Scientific AI</h2>
+        <p class="section-desc">
+          Comparing the geometric assumptions, sample complexity, and perturbation robustness of different representation paradigms.
+        </p>
+      </div>
+
+      <!-- 3-Pillar Comparison Cards -->
+      <div class="grid-3">
+        <div class="card comparison-card negative">
+          <span class="comparison-badge badge-neg">Vectorization & Unfolding</span>
+          <h3>Euclidean Flattening</h3>
+          <p>
+            Treats high-order physical tensors as 1D vectors or 2D matrices. While effective for uncorrelated tabular records, flattening breaks coordinate-free geometric symmetries and inflates unconstrained parameter counts to $O(CTFd)$.
+          </p>
+        </div>
+
+        <div class="card comparison-card warning">
+          <span class="comparison-badge badge-warn">Generic Deep Models</span>
+          <h3>Unconstrained Capacity</h3>
+          <p>
+            Universal approximation is powerful when training samples are plentiful. In sample-constrained scientific regimes ($N \ll D$), unconstrained hypothesis spaces yield loose generalization bounds and high vulnerability to missing channels.
+          </p>
+        </div>
+
+        <div class="card comparison-card positive">
+          <span class="comparison-badge badge-pos">Structure-Preserving Tensors</span>
+          <h3>Algebraic & Spectral Inductive Biases</h3>
+          <p>
+            Directly formulates representations over multilinear manifolds. Low-rank factorizations and transform spectral priors constrain the hypothesis space, maximizing sample efficiency and preserving predictive stability under channel dropouts.
+          </p>
+        </div>
+      </div>
+
+      <!-- Figure 1: Training-Free Premise Probes -->
+      <div class="figure-container zoomable-fig" data-caption="Figure 1: Training-Free Premise Probes (Coupling & Dispersion on BNCI vs Sleep-EDF, Click to expand)." style="margin-top: 36px;">
+        <div class="figure-img-wrapper">
+          <img src="assets/fig1_structural_gap.png" alt="Training-Free Premise Probes on BNCI Motor Imagery and Sleep-EDF">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            Click to expand
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>Figure 1 (Training-Free Premise Probes):</strong> <em>(a) Coupling Probe</em>: Amplitude-phase coupling (AAC/PAC) is at chance on BNCI Motor Imagery (25.9% vs. 25% chance) but strongly discriminative on Sleep-EDF (65.5% / 53.9% vs. 20% chance). <em>(b) Dispersion Probe</em>: Per-band tubal dispersion accurately predicts a +18.6 pp advantage on Sleep ($p < 0.01$) versus +0.0 pp on Motor Imagery without heavy neural network training.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Methodology Section -->
+  <section id="methodology" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Technical Framework</div>
+        <h2>The SPReAD Tensor Representation Framework</h2>
+        <p class="section-desc">
+          Four interconnected mathematical pillars spanning multi-way continuous tensorization, transform-domain spectral regularization, robust optimization, and interpretable factor recovery.
+        </p>
+      </div>
+
+      <!-- Overall Architecture (Figure 2) -->
+      <div class="figure-container zoomable-fig" data-caption="Figure 2: Overall Technical Roadmap and Architecture for Robust Tensor Representation Learning (MEXT SPReAD Framework).">
+        <div class="figure-img-wrapper">
+          <img src="assets/overall_framework.png" alt="SPReAD Project Overall Framework Architecture">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            Click to expand full resolution
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>Figure 2 (SPReAD Technical Architecture):</strong> Four sequential stages: (1) Multi-mode tensorization; (2) Transform-domain spectral regularization with $t$-SVD & dual sparsity; (3) Robust optimization across noise, missing channels, and subject domain shifts; (4) Physical factor decomposition and clinical/scientific insight extraction.
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 32px;">
+        <div class="card">
+          <div class="card-icon-box icon-blue">01</div>
+          <h3>Multi-way Scientific Tensorization</h3>
+          <p>
+            Raw physical observations (e.g. intracranial EEG arrays) are modeled directly as higher-order tensors $\mathcal{X} \in \mathbb{R}^{C \times T \times F \times N \times S}$, corresponding to <em>Electrode Channels $\times$ Time Points $\times$ Frequency Bands $\times$ Trials $\times$ Subjects</em>. Continuous multi-dimensional physical symmetries are preserved without ad-hoc vectorization.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-teal">02</div>
+          <h3>Transform-Domain Spectral Regularization</h3>
+          <p>
+            We generalize matrix singular value decompositions to tensors via the algebraic <strong>$t$-product framework</strong> and <strong>ring-parametrized dual spectral sparsity</strong>. By applying unitary or learned orthogonal transforms $L$ along the frequency/mode axis, we induce compact singular value profiles that capture coherent physical dynamics.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-purple">03</div>
+          <h3>Robust Learning under Severe Perturbations</h3>
+          <p>
+            Scientific environments suffer from unpredictable noise, sporadic channel outages, and high cross-subject variability. Our framework integrates robust objective formulations (e.g., tube-dispersion batch normalization, Schatten-$p$ norms, and sample reweighting) to preserve stability under up to 50% missing channels.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon-box icon-amber">04</div>
+          <h3>Interpretable Factor & Rank Profiling</h3>
+          <p>
+            Unlike black-box representations, tensor decompositions yield explicit factor matrices corresponding to spatial topography, temporal waveforms, and spectral energy envelopes. Learned tubal ranks provide an objective quantitative metric of intrinsic physical complexity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof of Concept (PoC) Section -->
+  <section id="poc" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Primary Scientific Validation</div>
+        <h2>Proof of Concept: Empirical Neural Signal Validation</h2>
+        <p class="section-desc">
+          Single-variable geometry ablation and empirical validation on standard benchmarks (Sleep-EDF and BNCI-2a Motor Imagery) under strict Leave-One-Subject-Out (LOSO) evaluation.
+        </p>
+      </div>
+
+      <!-- PoC Diagram (Figure 3) -->
+      <div class="figure-container zoomable-fig" data-caption="Figure 3: Single-Variable Geometry & Mechanism Decomposition (Leave-One-Subject-Out, Click to expand).">
+        <div class="figure-img-wrapper">
+          <img src="assets/fig3_preliminary_evidence.png" alt="Single-Variable Geometry & Mechanism Decomposition on BNCI and Sleep-EDF">
+          <div class="zoom-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            Click to expand
+          </div>
+        </div>
+        <div class="figure-caption">
+          <strong>Figure 3 (Geometry & Mechanism Single-Variable Decomposition):</strong> <em>(a) BNCI2014_001 Motor Imagery ($n=9$ domains)</em>: Confirms an honest null result (Product $58.4\%$ vs $+L$ $57.0\%$ vs Tubal $56.3\%$, all $p > 0.65$ n.s.). <em>(b) Sleep-EDF ($n=12$ subjects, LOSO)</em>: Our Tubal geometry achieves $78.2 \pm 5.5\%$ vs Product baseline $48.0 \pm 13.1\%$ (<strong>$+30.3\text{ pp}$, paired $p = 0.001$</strong>), driven primarily by <strong>Tube Dispersion alone ($+24.3\text{ pp}$, $p = 0.013$)</strong> rather than coupling alone ($+6.0\text{ pp}$, n.s.). Individual per-subject points shown with jitter.
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 28px;">
+        <div class="card">
+          <h3>Why iEEG is the Ideal Benchmark for AI4Science</h3>
+          <p>
+            Intracranial EEG provides high temporal resolution and localized spatial information directly from brain tissue. However, it represents an extreme archetype of scientific data challenges:
+          </p>
+          <ul style="color: var(--text-secondary); margin-bottom: 1.25rem; padding-left: 20px;">
+            <li style="margin-bottom: 8px;"><strong>Extreme Sample Scarcity:</strong> Clinical annotations for Seizure Onset Zones (SOZ) require scarce expert epileptologist reviews.</li>
+            <li style="margin-bottom: 8px;"><strong>Complex Multi-mode Geometry:</strong> Strong coupling across spatial electrode grids, rhythmic oscillation bands ($\alpha, \beta, \gamma$), and transient burst times.</li>
+            <li style="margin-bottom: 8px;"><strong>Cross-Subject Distribution Shifts:</strong> Electrode implantation geometries vary substantially across patients.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-primary);">
+          <h3>Key Evaluation Metrics in the 180-Day PoC</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 14px;">
+            Comprehensive stress-testing protocols to validate sample efficiency, noise resilience, and domain adaptability:
+          </p>
+          <div style="background: var(--bg-tertiary); padding: 18px; border-radius: var(--radius-md);">
+            <ul style="color: var(--text-secondary); font-size: 0.92rem; padding-left: 18px;">
+              <li style="margin-bottom: 8px;"><strong>Discriminative Power:</strong> Classification balanced accuracy, AUC, and F1 scores for SOZ localization.</li>
+              <li style="margin-bottom: 8px;"><strong>Channel Dropout Curve:</strong> Measuring performance stability under random missing channels ($0\% \to 50\%$).</li>
+              <li style="margin-bottom: 8px;"><strong>Generalization:</strong> Leave-One-Subject-Out (LOSO) cross-patient validation.</li>
+              <li style="margin-bottom: 0;"><strong>Interpretability:</strong> Aligning extracted spatial-spectral tensor factors with post-surgical clinical findings.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Roadmap & Milestones -->
+  <section id="roadmap" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Project Schedule & Roadmap</div>
+        <h2>180-Day Implementation & Milestones</h2>
+        <p class="section-desc">
+          Structured phased execution under the MEXT SPReAD funding period, from initial tensor pipelines to community know-how sharing.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">Days 1 – 45</span>
+            <h3>Phase 1: Multi-way Continuous Tensorization & $t$-SVD Pipelines</h3>
+            <p>
+              Establishing standard intracranial EEG and electrophysiological tensor representation pipelines. Implementing $t$-product algebra kernels and automated time-frequency decomposition.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">Days 46 – 105</span>
+            <h3>Phase 2: Transform-Domain Spectral Regularization & Dual Sparsity</h3>
+            <p>
+              Integrating dual spectral sparsity regularization and learned unitary transform layers. Deriving Rademacher generalization bounds under small-sample constraints.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">Days 106 – 150</span>
+            <h3>Phase 3: Robust Optimization & Cross-Subject Generalization</h3>
+            <p>
+              Stress-testing on missing-channel scenarios ($10\% \to 50\%$ channel dropouts). Evaluating transferability across heterogeneous patient cohorts.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-badge">Days 151 – 180</span>
+            <h3>Phase 4: Synthesis, Clinical Validation & Community Deliverables</h3>
+            <p>
+              Consolidating empirical results, open-sourcing modular PyTorch/NumPy tensor templates, and presenting findings at academic seminars and MEXT SPReAD reporting forums.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Groundwork & Supporting References -->
+  <section id="foundations" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Methodological Context</div>
+        <h2>Technical Groundwork & Prior References</h2>
+        <p class="section-desc">
+          Key theoretical tools and baseline protocols from prior investigations that provide mathematical foundations and empirical context for this SPReAD study.
+        </p>
+      </div>
+
+      <!-- Ref 1: ICML 2026 -->
+      <div class="pub-card">
+        <span class="pub-badge">Technical Reference · Spectral Regularization</span>
+        <div class="pub-title">Refining Dual Spectral Sparsity in Transformed Tensor Singular Values</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Haonan Huang, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">International Conference on Machine Learning (ICML), 2026.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            This work analyzes the singular value distribution of multi-dimensional tensors under orthogonal and unitary transformations. It establishes theoretical bounds demonstrating that appropriate transform domains induce compact spectral representations for structured signals. In the SPReAD project, these findings provide a theoretical reference for formulating the dual spectral sparsity regularization.
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2026refining,\n  title={Refining Dual Spectral Sparsity in Transformed Tensor Singular Values},\n  author={Wang, Andong and Qiu, Yuning and Huang, Haonan and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={ICML},\n  year={2026}\n}')">Copy BibTeX</button>
+        </div>
+      </div>
+
+      <!-- Ref 2: NeurIPS 2025 -->
+      <div class="pub-card">
+        <span class="pub-badge">Technical Reference · t-Product Algebra</span>
+        <div class="pub-title">Towards a Geometric Understanding of Tensor Learning via the t-Product</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Haonan Huang, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">Advances in Neural Information Processing Systems (NeurIPS), 2025.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            This study examines the geometric and algebraic properties of $t$-product tensor manifolds over commutative rings. It characterizes how ring-based multilinear operations influence representation capacity and manifold geometry. These geometric insights serve as an algebraic foundation for the multi-mode parameterization explored in this project.
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2025geometric,\n  title={Towards a Geometric Understanding of Tensor Learning via the t-Product},\n  author={Wang, Andong and Qiu, Yuning and Huang, Haonan and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={NeurIPS},\n  year={2025}\n}')">Copy BibTeX</button>
+        </div>
+      </div>
+
+      <!-- Ref 3: ICML 2025 -->
+      <div class="pub-card">
+        <span class="pub-badge">Technical Reference · Subspace Transitions</span>
+        <div class="pub-title">Low-Rank Tensor Transitions (LoRT) for Transferable Tensor Regression</div>
+        <div class="pub-authors">Andong Wang, Yuning Qiu, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">International Conference on Machine Learning (ICML), 2025.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            This paper investigates low-rank transition operators designed to model shifts across tensor coefficient spaces. It provides an efficient framework for adapting structured models to varying data distributions across experimental environments. The method offers algorithmic references for addressing cross-subject variability in neural electrophysiology decoding.
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2025lowrank,\n  title={Low-Rank Tensor Transitions (LoRT) for Transferable Tensor Regression},\n  author={Wang, Andong and Qiu, Yuning and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={ICML},\n  year={2025}\n}')">Copy BibTeX</button>
+        </div>
+      </div>
+
+      <!-- Ref 4: NeurIPS 2023 -->
+      <div class="pub-card">
+        <span class="pub-badge">Technical Reference · Generalization Bounds</span>
+        <div class="pub-title">Transformed Low-Rank Parameterization Can Help Robust Generalization for Tensor Neural Networks</div>
+        <div class="pub-authors">Andong Wang, Chao Li, Meng Bai, Zhong Jin, Guoxu Zhou, Qibin Zhao</div>
+        <div class="pub-venue">Advances in Neural Information Processing Systems (NeurIPS), 2023.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            This work investigates generalization error bounds for tensor-structured neural network architectures. It proves that applying mode-wise transformations prior to low-rank factorization tightens Rademacher complexity bounds. These theoretical bounds provide preliminary analytical tools for assessing sample efficiency in scientific data modeling.
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@inproceedings{wang2023transformed,\n  title={Transformed Low-Rank Parameterization Can Help Robust Generalization for Tensor Neural Networks},\n  author={Wang, Andong and Li, Chao and Bai, Meng and Jin, Zhong and Zhou, Guoxu and Zhao, Qibin},\n  booktitle={NeurIPS},\n  year={2023}\n}')">Copy BibTeX</button>
+        </div>
+      </div>
+
+      <!-- Ref 5: BSPC 2026 (Clinical iEEG) -->
+      <div class="pub-card">
+        <span class="pub-badge">Technical Reference · Electrophysiology Baseline</span>
+        <div class="pub-title">Classification of Epileptic Seizure Onset Zone from iEEG by Reweighting Augmented Samples</div>
+        <div class="pub-authors">Xuyang Zhao, Qibin Zhao, Andong Wang, Hidenori Sugano, Toshihisa Tanaka</div>
+        <div class="pub-venue">Biomedical Signal Processing and Control, Vol. 120, 2026.</div>
+        
+        <div class="ref-summary-box">
+          <p>
+            This study explores sample-reweighted learning for identifying epileptic seizure onset zones from clinical intracranial EEG recordings. It examines practical experimental challenges arising from electrode noise and limited clinical sample cohorts. The findings provide empirical context and baseline protocols for the neural signal decoding component of this project.
+          </p>
+        </div>
+        <div class="pub-actions">
+          <button class="pub-btn" onclick="copyTextToClipboard('@article{zhao2026classification,\n  title={Classification of epileptic seizure onset zone from iEEG by reweighting augmented samples},\n  author={Zhao, Xuyang and Zhao, Qibin and Wang, Andong and Sugano, Hidenori and Tanaka, Toshihisa},\n  journal={Biomedical Signal Processing and Control},\n  volume={120},\n  pages={110105},\n  year={2026}\n}')">Copy BibTeX</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community & Know-how Sharing -->
+  <section id="community" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Open Science & Collaboration</div>
+        <h2>SPReAD AI for Science Community Deliverables</h2>
+        <p class="section-desc">
+          Disseminating practical know-how, open pipelines, and empirical principles to empower researchers across broader scientific disciplines.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Reusable Code Templates</h3>
+          <p>
+            Clean PyTorch and NumPy script templates for direct multi-mode tensorization of continuous time-series, with automated time-frequency transformations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Practical Method Guidelines</h3>
+          <p>
+            Clear guidelines on choosing between standard vectorization, Tucker/CP models, and $t$-product ring algebras for different physical data distributions.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Cross-Disciplinary Workflows</h3>
+          <p>
+            Translating neural engineering and iEEG validation protocols into reusable methodologies for other scientific domains such as climate dynamics and biophysics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team & Labs Section -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Research Organization</div>
+        <h2>Research Team & Computing Infrastructure</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 4px;">Andong Wang, Ph.D.</h3>
+              <div style="color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">
+                Principal Investigator (PI) &middot; Research Scientist
+              </div>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 12px;">
+                Research Scientist at the RIKEN Center for Advanced Intelligence Project (RIKEN AIP). Specializing in multilinear algebra, robust tensor representations, and AI for Science.
+              </p>
+              <div style="display: flex; gap: 12px; font-size: 0.88rem;">
+                <a href="mailto:w.a.d@outlook.com" class="text-link">✉️ Contact PI</a>
+                <span>&middot;</span>
+                <a href="index.html" class="text-link">Personal Homepage ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Host Laboratory & Compute Infrastructure</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 10px;">
+            This project is hosted within the <strong>Imperfect Information Learning Team / Tensor Learning Group</strong> at RIKEN AIP (led by Prof. Qibin Zhao).
+          </p>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0;">
+            Supported by the <a href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener" class="text-link">MEXT AI for Science (SPReAD) Initiative ↗</a> (MEXT Exploratory Challenge Research Grant). Computational experiments are conducted utilizing the RIKEN AIP <strong>RAIDEN</strong> GPU cluster.
+          </p>
+        </div>
+      </div>
+
+      <!-- Citation Section -->
+      <div id="citation" style="margin-top: 48px;">
+        <h3 style="margin-bottom: 8px;">Cite this Project</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 14px;">If you use concepts, code templates, or findings from the SPReAD project in your research, please cite:</p>
+        
+        <div class="bibtex-wrapper">
+          <div class="bibtex-header">
+            <span>BibTeX Citation</span>
+            <button class="bibtex-copy-btn" onclick="copyBibtexCitation()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy BibTeX</span>
+            </button>
+          </div>
+          <pre class="bibtex-box" id="bibtex-citation-code"><code>@misc{wang2026spread,
+  title        = {Robust Tensor Representation Learning for High-Dimensional Scientific Data},
+  author       = {Wang, Andong},
+  howpublished = {MEXT AI for Science Program: SPReAD Initiative (Grant No. 26279343)},
+  institution  = {RIKEN Center for Advanced Intelligence Project (RIKEN AIP)},
+  year         = {2026},
+  url          = {https://ai4science.riken.jp/spread-tensor}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        <strong>SPReAD: Robust Tensor Representation Learning for High-Dimensional Scientific Data</strong>
+      </p>
+      <p class="footer-text">
+        Supported by the Ministry of Education, Culture, Sports, Science and Technology (MEXT), Japan (Grant No. 26279343).
+      </p>
+      <p class="footer-text" style="font-size: 0.8rem; margin-top: 14px;">
+        &copy; 2026 Andong Wang &middot; RIKEN Center for Advanced Intelligence Project (RIKEN AIP). All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal Overlay -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-container">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close image">&#10005;</button>
+      <img id="modal-img" src="" alt="Expanded View">
+      <div id="modal-caption" class="figure-caption" style="text-align: center; margin-top: 12px;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-msg">Copied to clipboard!</span>
+  </div>
+
+  <!-- Interactive Script -->
+  <script src="assets/script.js"></script>
+</body>
+</html>
