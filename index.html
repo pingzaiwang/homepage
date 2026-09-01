@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset= width: 100%;"UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Andong Wang, Research Scientist at RIKEN AIP. Tensor learning, algebraic geometry methods, trustworthy learning from imperfect information, robust transfer, and quantum machine learning." />
   <title>Andong Wang | Researcher, RIKEN AIP</title>
@@ -325,7 +325,7 @@
       flex-wrap: wrap;
       gap: 7px 8px;
       margin-top: 28px;
-      width: 100%;
+      max-width: 760px;
     }
 
     .tag {
@@ -352,28 +352,74 @@
     .final-photo {
       display: flex;
       align-items: center;
-      gap: 26px;
-      padding: 38px 0 46px;
+      justify-content: center;
+      gap: 28px;
+      padding: 42px 0 36px;
       border-bottom: none;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      width: 240px;
+      max-width: 240px;
+      flex-shrink: 0;
     }
 
     .final-photo .portrait {
-      width: 250px;
-      max-width: 250px;
+      display: block;
+      position: relative;
+      aspect-ratio: 1042 / 1672;
+      width: 100%;
+      overflow: hidden;
       border-radius: 18px;
-      border: 1px solid #c8dfef;
-      box-shadow: 0 6px 24px rgba(19, 93, 148, 0.06);
+      border: 1.5px solid rgba(41, 140, 209, 0.4);
+      box-shadow: 0 8px 24px rgba(19, 93, 148, 0.12);
+      background: #ffffff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .final-photo .portrait:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(19, 93, 148, 0.18);
+    }
+
+    .final-photo .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
     }
 
     .final-note {
-      max-width: 450px;
-      padding: 18px 22px;
-      background: linear-gradient(135deg, #eef6fd, #f7fbff);
+      max-width: 520px;
+      padding: 24px 28px;
+      background: linear-gradient(135deg, #f0f7fe, #fbfdff);
       border: 1px solid #d4e7f6;
-      border-left: 3px solid var(--blue-accent);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      box-shadow: 0 4px 18px rgba(19, 93, 148, 0.03);
+      border-left: 3.5px solid var(--blue-accent);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 18px rgba(19, 93, 148, 0.04);
       font-family: var(--font-kaiti);
+    }
+
+    .final-note p {
+      margin: 0 0 6px 0;
+      color: #23435f;
+      font-size: 0.94rem;
+      line-height: 1.82;
+      font-family: var(--font-kaiti);
+      font-weight: 400;
+      letter-spacing: 0.025em;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      filter: grayscale(8%) saturate(0.94) contrast(0.98);
     }
 
     .final-note p {
@@ -796,7 +842,7 @@
       <a href="#publications">Publications</a>
       <a href="#experience">Experience</a>
       <a href="#service">Service</a>
-      <a href="#funding">Grants</a>
+      <a href="#funding">Grants & Projects</a>
       <a href="#research-reflections">Reflections</a>
       <a href="index_ja.html" class="tag" style="margin-left: 6px; font-weight: 600; padding: 3px 10px; text-decoration: none;" title="日本語版へ切り替え">🌐 日本語</a>
     </nav>
@@ -872,6 +918,8 @@
         </article>
       </div>
     </section>
+
+
 
     <section id="publications" aria-label="Selected publications">
       <div class="section-heading">
@@ -951,10 +999,10 @@
       </ol>
     </section>
 
-    <section id="funding" aria-label="Research grants and awards">
+    <section id="funding" aria-label="Research grants, projects, and awards">
       <div class="section-heading">
-        <h2>Research Grants and Awards</h2>
-        <p>Competitive research funding and selected recognition.</p>
+        <h2>Research Grants, Projects and Awards</h2>
+        <p>Competitive research funding, research initiatives, and selected recognition.</p>
       </div>
       <ul class="timeline">
         <li>
@@ -983,6 +1031,13 @@
           <div>
             <h3>Research Award</h3>
             <p>RIKEN Research and Technology Incentive Award (Ohbu Award / 理研桜舞賞), "Robust Machine Learning with Advanced Tensor Decomposition Techniques".</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2024 –</span>
+          <div>
+            <h3>Research Initiative (Lead)</h3>
+            <p><a class="pub-link" href="https://pingzaiwang.github.io/ai4i/ai4adversity.html" target="_blank" rel="noopener">AI4I · AdversityBench | Prudence and Dignity: Dialogue Decision-Making in Human Adversity</a> <a class="pub-link" href="https://pingzaiwang.github.io/ai4i/ai4adversity.html" target="_blank" rel="noopener">[Project Portal ↗]</a>.</p>
           </div>
         </li>
       </ul>
@@ -1022,16 +1077,16 @@
         </a>
       </aside>
       <div class="final-note">       
-          <p>十年间，想搞定负障碍，一直不得其法。</p>
-          <p>几年来，想学代数几何，却是一塌糊涂。</p>
-          <p>近两年，想建模人与AI，难逃思维桎梏。</p>
-          <p style="text-align: center;">。。。。。。</p>
-          <p>东子人菜瘾大，谨小慎微，也经常出错。</p>
-          <p>曾是太平天国迷，常回想平在山兄弟们二十岁的旷世呐喊，而自己年近四十、须发渐白，却还在逃避现实困难，靠涂几页薄纸取巧偷安。</p>
-          <p style="text-align: center;">。。。。。。</p>
-          <p>稀里糊涂二十年，对人对己对科研，想轻轻说一句：</p> 
-          <p style="text-align: center;">进步太慢很抱歉</p>
-          <p style="text-align: center;">仍似少年磨长剑</p>
+        <p>十年间，想搞定负障碍，一直不得其法。</p>
+        <p>几年来，想学代数几何，却是一塌糊涂。</p>
+        <p>近两年，想建模人与AI，难逃思维桎梏。</p>
+        <p style="text-align: center; color: #7ca5c5; margin: 6px 0;">······</p>
+        <p>东子人菜瘾大，谨小慎微，也经常出错。</p>
+        <p>曾是太平天国迷，常回想平在山兄弟们二十岁的旷世呐喊，而自己年近四十、须发渐白，却还在逃避现实困难，靠涂几页薄纸取巧偷安。</p>
+        <p style="text-align: center; color: #7ca5c5; margin: 6px 0;">······</p>
+        <p>稀里糊涂二十年，对人对己对科研，想轻轻说一句：</p> 
+        <p style="text-align: center; font-weight: 600; color: var(--ink); margin-top: 8px; margin-bottom: 3px;">进步太慢很抱歉</p>
+        <p style="text-align: center; font-weight: 600; color: var(--ink); margin-bottom: 0;">仍似少年磨长剑</p>
       </div>
     </section>
   </main>
