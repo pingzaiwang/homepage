@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Andong Wang, Research Scientist at RIKEN AIP. Tensor learning, algebraic geometry methods, trustworthy learning from imperfect information, robust transfer, and quantum machine learning." />
+    content="Andong Wang, Research Scientist at RIKEN AIP. Tensor learning, algebraic geometry methods, trustworthy learning from imperfect information, robust transfer, and AI for Science." />
   <title>Andong Wang | Researcher, RIKEN AIP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
@@ -264,12 +264,43 @@
       line-height: 1.7;
     }
 
-    .quiet-note {
-      max-width: 720px;
-      margin-top: 14px;
-      color: #4a7191;
-      font-size: 0.96rem;
-      line-height: 1.58;
+    .hero-observation {
+      position: relative;
+      margin-top: 6px;
+      padding: 13px 20px;
+      background: rgba(255, 255, 255, 0.82);
+      border-top: 1px solid #cbe0f3;
+      border-bottom: 1px solid #cbe0f3;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .obs-badge {
+      font-family: var(--times);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      background: #e6f2fc;
+      border: 1px solid #c3ddf3;
+      border-radius: 999px;
+      padding: 2px 10px;
+      line-height: 1.35;
+      flex-shrink: 0;
+    }
+
+    .obs-text {
+      margin: 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.12rem, 1.7vw, 1.28rem);
+      line-height: 1.42;
+      color: var(--ink);
+      letter-spacing: 0.005em;
     }
 
     .hero-joke-wrapper {
@@ -296,63 +327,12 @@
       color: var(--blue-deep);
     }
 
-    .profile-note {
-      margin-top: 18px;
-      font-size: 0.82rem;
-      line-height: 1.48;
-      font-weight: 650;
-      padding: 9px 0 9px 12px;
-    }
-
-    .profile-note-cn {
-      margin-top: 10px;
-      font-size: 0.78rem;
-      line-height: 1.55;
-      color: #4a7191;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 22px;
-      margin-top: 30px;
-    }
-
-    .text-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #176da8;
-      font-weight: 650;
-      border-bottom: 1px solid rgba(41, 140, 209, 0.45);
-      line-height: 1.4;
-      transition: all 0.18s ease;
-    }
-
-    .text-link:hover {
-      color: var(--blue-deep);
-      border-color: var(--blue-deep);
-    }
-
-    .email-link {
-      color: #406f8e;
-      border-bottom: 1px solid rgba(41, 140, 209, 0.28);
-      font-size: 0.94rem;
-      transition: color 0.18s ease;
-    }
-
-    .email-link:hover {
-      color: var(--blue-deep);
-      border-color: var(--blue-deep);
-    }
-
     .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 7px 8px;
-      margin-top: 28px;
-      max-width: 760px;
+      margin-top: 22px;
+      max-width: 100%;
     }
 
     .tag {
@@ -371,11 +351,14 @@
       border-color: #bad8ee;
     }
 
-
     section {
       scroll-margin-top: 60px;
       padding: 50px 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    section.last-section {
+      border-bottom: none;
     }
 
     .section-heading {
@@ -398,19 +381,6 @@
       max-width: 1100px;
       color: #4a7191;
       font-size: 0.92rem;
-    }
-
-    .sub-heading {
-      margin-top: 38px;
-      margin-bottom: 14px;
-    }
-
-    .sub-heading h3 {
-      color: var(--blue-deep);
-      font-size: 1.25rem;
-      font-family: var(--serif);
-      font-weight: 700;
-      letter-spacing: -0.01em;
     }
 
     .two-column-text {
@@ -476,21 +446,6 @@
       color: #4a7191;
       font-size: 0.88rem;
       line-height: 1.45;
-    }
-
-    .timeline .compact-note {
-      color: var(--muted-light);
-    }
-
-    .note-panel {
-      margin-top: 22px;
-      padding: 14px 16px;
-      border: 1px solid #d4e7f6;
-      border-left: 3px solid var(--blue-accent);
-      background: #f2f8fd;
-      color: #325875;
-      border-radius: var(--radius-md);
-      font-size: 0.9rem;
     }
 
     .pub-list {
@@ -572,10 +527,6 @@
       font-style: italic;
       font-weight: 500;
       color: #b87e14;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      vertical-align: 0;
     }
 
     .service-list {
@@ -602,28 +553,6 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 0.82em;
       font-weight: 600;
-    }
-
-    .contact-band {
-      padding-bottom: 72px;
-      border-bottom: none;
-    }
-
-    .contact-inner {
-      padding: 30px 0 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .contact-inner h2 {
-      color: var(--blue-deep);
-      font-size: clamp(1.8rem, 3.4vw, 2.7rem);
-      margin-bottom: 14px;
-    }
-
-    .contact-inner p {
-      max-width: 720px;
-      color: var(--muted);
-      margin-bottom: 22px;
     }
 
     footer {
@@ -737,7 +666,8 @@
       <a href="#publications">Publications</a>
       <a href="#experience">Experience</a>
       <a href="#service">Service</a>
-      <a href="#funding">Grants & Projects</a>
+      <a href="#funding">Grants &amp; Projects</a>
+      <a href="#reflection">Reflection</a>
       <a href="index_ja.html" class="tag"
         style="margin-left: 6px; font-weight: 600; padding: 3px 10px; text-decoration: none;"
         title="Switch to Japanese version">🌐 Japanese</a>
@@ -769,17 +699,24 @@
         <div class="tag-row" aria-label="Research keywords">
           <span class="tag">Tensor Learning</span>
           <span class="tag">Trustworthy Learning</span>
-          <span class="tag">AI for Science & Quantum ML</span>
+          <span class="tag">AI for Science &amp; Quantum ML</span>
           <span class="tag">Algebraic Geometry Methods</span>
-          <span class="tag">Autonomous Driving & Robotics</span>
+          <span class="tag">Autonomous Driving &amp; Robotics</span>
         </div>
+      </div>
+
+      <div class="hero-observation" aria-label="Observation">
+        <span class="obs-badge">Observation</span>
+        <p class="obs-text">
+          “AI was supposed to free up our time, yet somehow, the smarter AI gets, the less we humans seem to sleep.”
+        </p>
       </div>
 
       <div class="hero-joke-wrapper">
         <p class="self-joke">
           🤖 <strong>In his early engineering days:</strong> things worked, but he did not know why.<br />
           🤯 <strong>In his later theory days:</strong> he knew why, but nothing worked.<br />
-          🫠 <strong>His current ambition:</strong> is to combine the two traditions—neither knowing why, nor making it
+          🫠 <strong>His current ambition:</strong> is to combine the two traditions, neither knowing why, nor making it
           work.
         </p>
       </div>
@@ -817,7 +754,7 @@
           </p>
         </article>
         <article class="text-block">
-          <h3>⚛️ Applications · Quantum ML & Multimodal ML</h3>
+          <h3>⚛️ Applications · Quantum ML &amp; Multimodal ML</h3>
           <p>
             <strong>Quantum machine learning</strong> and <strong>multimodal representation learning</strong>,
             leveraging tensor networks as a principled mathematical language for <strong>structured
@@ -827,8 +764,6 @@
       </div>
     </section>
 
-
-
     <section id="publications" aria-label="Selected publications">
       <div class="section-heading">
         <h2>Selected Publications</h2>
@@ -837,7 +772,7 @@
       <ol class="pub-list">
         <li>
           <div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span>
-            <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · ICML
+            <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., &amp; Zhao, Q. · ICML
               2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank"
               rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm"
               target="_blank" rel="noopener">Code</a></div>
@@ -845,14 +780,14 @@
         <li>
           <div><span class="pub-title">Towards a geometric understanding of tensor learning via the
               t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou,
-              G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link"
+              G., &amp; Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link"
               href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf"
               target="_blank" rel="noopener">PDF</a> <a class="pub-link"
               href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div>
         </li>
         <li>
           <div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span>
-            <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span>
+            <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., &amp; Zhao, Q. · ICML 2025.</span>
             <a class="pub-link"
               href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank"
               rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank"
@@ -861,7 +796,7 @@
         <li>
           <div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under
               combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin,
-              Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link"
+              Z., Zhou, G., &amp; Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link"
               href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf"
               target="_blank" rel="noopener">PDF</a> <a class="pub-link"
               href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div>
@@ -869,20 +804,20 @@
         <li>
           <div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor
               neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z.,
-              Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link"
+              Zhou, G., &amp; Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link"
               href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf"
               target="_blank" rel="noopener">PDF</a> <a class="pub-link"
               href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div>
         </li>
         <li>
           <div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span
-              class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected
+              class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., &amp; Zhao, Q. · IEEE Journal of Selected
               Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link"
               href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div>
         </li>
         <li>
           <div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear
-              Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI
+              Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., &amp; Zhao, Q. · AAAI
               2020 <span class="badge-oral">Oral</span>.</span> <a class="pub-link"
               href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a>
             <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a>
@@ -890,21 +825,21 @@
         </li>
         <li>
           <div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span
-              class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019 <span
+              class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., &amp; Jin, Z. · ICASSP 2019 <span
                 class="badge-oral">Oral</span>.</span> <a class="pub-link"
               href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion"
               target="_blank" rel="noopener">Link</a></div>
         </li>
         <li>
           <div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span
-              class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279,
+              class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., &amp; Jin, Z. · Neurocomputing, 330, 267–279,
               2019.</span> <a class="pub-link"
               href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank"
               rel="noopener">Link</a></div>
         </li>
         <li>
           <div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube
-              thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> & Jin, Z. · ICDM Workshop
+              thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> &amp; Jin, Z. · ICDM Workshop
               2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank"
               rel="noopener">Link</a> <span class="first-paper-note">(My very first paper, published after extending my
               PhD. It looks simple now, but it was a hard time of real growth 😂)</span></div>
@@ -915,7 +850,7 @@
     <section id="experience" aria-label="Experience">
       <div class="section-heading">
         <h2>Education and Research Experience</h2>
-        <p>Education and research appointments.</p>
+        <p>Education, research appointments, and early engineering roles.</p>
       </div>
       <ul class="timeline">
         <li>
@@ -942,7 +877,7 @@
             <h3>Postdoctoral Researcher · Guangdong University of Technology</h3>
             <p><strong>Robust tensor learning</strong>; advised by <strong><a
                   href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu
-                  Zhou</a></strong>.</p>
+                  Zhou</a></strong>. (Also served part-time as Software Lead for early-stage intelligent welding robot R&amp;D, 2019–2021, prior to moving to Japan.)</p>
           </div>
         </li>
         <li>
@@ -972,11 +907,13 @@
       </div>
       <ol class="service-list">
         <li>Secretary, RIKEN Researcher Assembly, FY2026–FY2027.</li>
-        <li>Area Chair: ICML 2026, NeurIPS 2026, ICLR 2027.</li>
+        <li>Area Chair: ICML 2026, NeurIPS 2026 (<strong>Top Area Chair</strong>), ICLR 2027.</li>
+        <li>Publication Chair: ACPR 2027 (9th Asian Conference on Pattern Recognition).</li>
         <li>Senior Program Committee: AAAI 2027.</li>
+        <li>External Lecturer for graduate courses, The University of Tokyo.</li>
         <li>Co-organizer, ICIAM 2023 Mini-symposium: New Trends in Tensor Networks and Tensor Optimization.</li>
         <li>Workshop Co-Chair, IEEE CAI 2024 Workshop: Tensor Models for Machine Learning.</li>
-        <li>Reviewer for NeurIPS, ICML, ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS,
+        <li>Reviewer for NeurIPS (Outstanding Reviewer 2022), ICML (Top Reviewer 2024), ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS,
           Pattern Recognition, Neural Networks, and Machine Learning.</li>
       </ol>
     </section>
@@ -992,9 +929,16 @@
           <div>
             <h3>Research Funding (PI)</h3>
             <p>MEXT AI for Science: SPReAD Program (Grant No. 26279343), "Robust Tensor Representation Learning for
-              High-Dimensional Scientific Data in AI for Science" <a class="pub-link" href="spread.html" target="_blank"
+              High-Dimensional Scientific Data in AI for Science" (acceptance rate &lt; 3%) <a class="pub-link" href="spread.html" target="_blank"
                 rel="noopener">[Project Page ↗]</a> <a class="pub-link" href="https://www.mext.go.jp/aifors_spread/"
                 target="_blank" rel="noopener">[MEXT SPReAD ↗]</a>.</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2026</span>
+          <div>
+            <h3>Academic Recognition</h3>
+            <p>Top Area Chair, NeurIPS 2026.</p>
           </div>
         </li>
         <li>
@@ -1014,11 +958,11 @@
           </div>
         </li>
         <li>
-          <span class="time">2025/03</span>
+          <span class="time">2024</span>
           <div>
             <h3>Research Award</h3>
             <p>RIKEN Research and Technology Incentive Award (Ohbu Award), "Robust Machine Learning with Advanced Tensor
-              Decomposition Techniques".</p>
+              Decomposition Techniques" (annual selection rate &lt; 2%).</p>
           </div>
         </li>
         <li>
@@ -1032,6 +976,32 @@
           </div>
         </li>
       </ul>
+    </section>
+
+    <section id="reflection" class="last-section" aria-label="Reflection">
+      <div class="section-heading">
+        <h2>Reflection</h2>
+        <p>On mathematical formulation as productivity when AI lowers the cost of derivation and solving.</p>
+      </div>
+      <div class="two-column-text">
+        <article class="text-block">
+          <h3>Lowering the Cost of Execution</h3>
+          <p>
+            Modern AI reduces the marginal cost of <strong>modeling, verification, and mathematical
+              programming</strong>. Whenever a resource-intensive engineering subproblem admits a well-posed
+            mathematical formulation, resolving it shifts from costly empirical iteration to low-cost automated solving.
+          </p>
+        </article>
+        <article class="text-block">
+          <h3>Formulation Remains the Bottleneck</h3>
+          <p>
+            Cheaper solvers do not automate problem formulation. Real systems do not specify their own state spaces,
+            structural assumptions, or regimes of validity. Abstracting an ill-defined problem into a faithful model,
+            and auditing where its guarantees break down, still relies on mathematical judgment developed through
+            long-term study.
+          </p>
+        </article>
+      </div>
     </section>
   </main>
 

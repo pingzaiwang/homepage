@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="王 安東（Andong Wang）、理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員。テンソル表現学習、代数幾何的手法、不完全情報からの高信頼学習、頑健転移、量子機械学習。" />
+  <meta name="description" content="王 安東（Andong Wang）、理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員。テンソル表現学習、代数幾何的手法、不完全情報からの高信頼学習、頑健転移、AI for Science。" />
   <title>王 安東 (Andong Wang) | 理化学研究所 AIP 研究員</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
@@ -189,9 +189,45 @@
       width: 100%;
     }
 
+    .hero-observation {
+      position: relative;
+      margin-top: 6px;
+      padding: 13px 20px;
+      background: rgba(255, 255, 255, 0.82);
+      border-top: 1px solid #cbe0f3;
+      border-bottom: 1px solid #cbe0f3;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .obs-badge {
+      font-family: var(--font-klee);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--blue-deep);
+      background: #e6f2fc;
+      border: 1px solid #c3ddf3;
+      border-radius: 999px;
+      padding: 2px 11px;
+      line-height: 1.35;
+      flex-shrink: 0;
+    }
+
+    .obs-text {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(0.98rem, 1.45vw, 1.08rem);
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
     .hero-joke-wrapper {
       width: 100%;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .self-joke {
@@ -305,6 +341,10 @@
       scroll-margin-top: 60px;
       padding: 50px 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    section.last-section {
+      border-bottom: none;
     }
 
     .section-heading {
@@ -576,7 +616,8 @@
       <a href="#publications">主要論文</a>
       <a href="#experience">略歴・経歴</a>
       <a href="#service">学会活動</a>
-      <a href="#funding">助成・プロジェクト・受賞</a>
+      <a href="#funding">助成・受賞</a>
+      <a href="#reflection">省察</a>
       <a href="index.html" class="tag" style="margin-left: 6px; font-weight: 600; padding: 3px 10px; text-decoration: none;" title="Switch to English">🌐 English</a>
     </nav>
   </header>
@@ -587,7 +628,7 @@
         <div class="hero-title-area">
           <span class="eyebrow">理化学研究所 革新知能統合研究センター（RIKEN AIP）研究員</span>
           <div style="margin-top: 2px; margin-bottom: 6px;">
-            <span class="trans-disclaimer">※ 本日本語版ページは Gemini により翻訳・作成されました</span>
+            <span class="trans-disclaimer">※ 本日本語版ページは AI により翻訳・作成されました</span>
           </div>
           <h1>王 安東 <span class="name-en">WANG Andong, Ph.D.</span></h1>
         </div>
@@ -607,10 +648,17 @@
         <div class="tag-row" aria-label="研究キーワード">
           <span class="tag">テンソル学習</span>
           <span class="tag">高信頼学習</span>
-          <span class="tag">AI for Science & 量子機械学習</span>
+          <span class="tag">AI for Science &amp; 量子機械学習</span>
           <span class="tag">代数幾何的手法</span>
           <span class="tag">自動運転・ロボティクス</span>
         </div>
+      </div>
+
+      <div class="hero-observation" aria-label="観察">
+        <span class="obs-badge">観察</span>
+        <p class="obs-text">
+          「AIは人間の時間を解放してくれるはずだった。それなのに不思議なことに、AIが賢くなるほど、人間の睡眠時間は減っていくようである。」
+        </p>
       </div>
 
       <div class="hero-joke-wrapper">
@@ -647,7 +695,7 @@
           </p>
         </article>
         <article class="text-block">
-          <h3>⚛️ 応用 · 量子機械学習 & マルチモーダル</h3>
+          <h3>⚛️ 応用 · 量子機械学習 &amp; マルチモーダル</h3>
           <p>
             <strong>量子機械学習</strong>および<strong>マルチモーダル表現学習</strong>において、テンソルネットワークを<strong>構造化表現</strong>、プロンプトチューニング、および<strong>高ノイズ・欠損データからの頑健復元</strong>のための数理言語として活用。
           </p>
@@ -655,31 +703,29 @@
       </div>
     </section>
 
-
-
     <section id="publications" aria-label="主要論文">
       <div class="section-heading">
         <h2>主要論文</h2>
         <p>テンソル幾何、頑健汎化、転移学習、テンソル復元に関する主要論文。論文に誤り等ございましたら、メールにてご教示いただけますと幸いです（w.a.d@outlook.com）。</p>
       </div>
       <ol class="pub-list">
-        <li><div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm" target="_blank" rel="noopener">Code</a></div></li> 
-        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., & Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., & Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., & Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., & Zhao, Q. · AAAI 2020 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
-        <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., & Jin, Z. · ICASSP 2019 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., & Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
-        <li><div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> & Jin, Z. · ICDM Workshop 2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank" rel="noopener">Link</a> <span class="first-paper-note">（博士課程延期を経てようやく発表に至った人生最初の論文。素朴ながらも、決して容易ではなかった研究生活の原点です）</span></div></li>
+        <li><div><span class="pub-title">Refining dual spectral sparsity in transformed tensor singular values.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., &amp; Zhao, Q. · ICML 2026.</span> <a class="pub-link" href="https://openreview.net/pdf?id=1ZIjW3LFcH" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LpSq-QuasiNorm" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Towards a geometric understanding of tensor learning via the t-product.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Huang, H., Jin, Z., Zhou, G., &amp; Zhao, Q. · NeurIPS 2025.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/cef8f771a55c5ff0c9a421813c7f598b-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/BTR4tGeometry" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Low-Rank Tensor Transitions (LoRT) for transferable tensor regression.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Jin, Z., Zhou, G., &amp; Zhao, Q. · ICML 2025.</span> <a class="pub-link" href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/wang25cj/wang25cj.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/LoRT" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Generalized tensor decomposition for understanding multi-output regression under combinatorial shifts.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Qiu, Y., Bai, M., Jin, Z., Zhou, G., &amp; Zhao, Q. · NeurIPS 2024.</span> <a class="pub-link" href="https://papers.neurips.cc/paper_files/paper/2024/file/54ece32fe923c26b3de15d0da182e008-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/FtSVD4MORCDS" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Transformed low-rank parameterization can help robust generalization for tensor neural networks.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Bai, M., Jin, Z., Zhou, G., &amp; Zhao, Q. · NeurIPS 2023.</span> <a class="pub-link" href="https://proceedings.neurips.cc/paper_files/paper/2023/file/092c2d45005ea2db40fc24c470663416-Paper-Conference.pdf" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/Analysis4TNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Tensor recovery via L-spectral k-support norm.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Zhou, G., Jin, Z., &amp; Zhao, Q. · IEEE Journal of Selected Topics in Signal Processing, 15(3), 522–534, 2021.</span> <a class="pub-link" href="https://doi.org/10.1109/JSTSP.2021.3058763" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Robust Tensor Decomposition via Orientation Invariant Tubal Nuclear Norms.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Li, C., Jin, Z., &amp; Zhao, Q. · AAAI 2020 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/6074/5930" target="_blank" rel="noopener">PDF</a> <a class="pub-link" href="https://github.com/pingzaiwang/OITNN" target="_blank" rel="noopener">Code</a></div></li>
+        <li><div><span class="pub-title">Latent Schatten TT norm for tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Song, X., Wu, X., Lai, Z., &amp; Jin, Z. · ICASSP 2019 <span class="badge-oral">Oral</span>.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=Latent%20Schatten%20TT%20norm%20for%20tensor%20completion" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Noisy low-tubal-rank tensor completion.<br></span> <span class="pub-meta"><strong>Wang, A.</strong>, Lai, Z., &amp; Jin, Z. · Neurocomputing, 330, 267–279, 2019.</span> <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0925231218313407" target="_blank" rel="noopener">Link</a></div></li>
+        <li><div><span class="pub-title">Near-optimal noisy low-tubal-rank tensor completion via singular tube thresholding.<br></span> <span class="pub-meta"><strong>Wang, A.</strong> &amp; Jin, Z. · ICDM Workshop 2017.</span> <a class="pub-link" href="https://ieeexplore.ieee.org/document/8215710" target="_blank" rel="noopener">Link</a> <span class="first-paper-note">（博士課程延期を経てようやく発表に至った人生最初の論文。素朴ながらも、決して容易ではなかった研究生活の原点です）</span></div></li>
       </ol>
     </section>
 
     <section id="experience" aria-label="略歴・経歴">
       <div class="section-heading">
         <h2>略歴・研究経歴</h2>
-        <p>学歴および研究機関での着任履歴。</p>
+        <p>学歴、研究機関での着任履歴、および初期の工学研究開発歴。</p>
       </div>
       <ul class="timeline">
         <li>
@@ -700,7 +746,7 @@
           <span class="time">2019 – 2022</span>
           <div>
             <h3>博士後研究員（ポスドク）· 広東工業大学</h3>
-            <p><strong>頑健テンソル学習</strong>：受入研究者 <strong><a href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu Zhou</a></strong>。</p>
+            <p><strong>頑健テンソル学習</strong>：受入研究者 <strong><a href="https://teacher.gdut.edu.cn/gxzhou/zh_CN/index.htm" target="_blank" rel="noopener">Prof. Guoxu Zhou</a></strong>。（渡日前の2019–2021年、知能溶接ロボットの初期ソフトウェア研究開発にて非常勤ソフトウェアリードも兼任。）</p>
           </div>
         </li>
         <li>
@@ -727,11 +773,13 @@
       </div>
       <ol class="service-list">
         <li>理化学研究所 研究員会議 幹事（FY2026–FY2027）。</li>
-        <li>Area Chair: ICML 2026, NeurIPS 2026, ICLR 2027。</li>
+        <li>Area Chair: ICML 2026, NeurIPS 2026（<strong>Top Area Chair</strong>）, ICLR 2027。</li>
+        <li>Publication Chair: ACPR 2027（9th Asian Conference on Pattern Recognition）。</li>
         <li>Senior Program Committee: AAAI 2027。</li>
+        <li>東京大学 大学院講義 非常勤講師。</li>
         <li>オーガナイザー: ICIAM 2023 ミニシンポジウム「New Trends in Tensor Networks and Tensor Optimization」。</li>
         <li>ワークショップ Co-Chair: IEEE CAI 2024「Tensor Models for Machine Learning」。</li>
-        <li>査読委員: NeurIPS, ICML, ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS, Pattern Recognition, Neural Networks, Machine Learning 等。</li>
+        <li>査読委員: NeurIPS（Outstanding Reviewer 2022）, ICML（Top Reviewer 2024）, ICLR, AISTATS, AAAI, IJCAI, CVPR, TPAMI, TIP, TSP, TNNLS, TCYB, TCSVT, SIIMS, Pattern Recognition, Neural Networks, Machine Learning 等。</li>
       </ol>
     </section>
 
@@ -745,7 +793,14 @@
           <span class="time">2026 – 2027</span>
           <div>
             <h3>研究助成（研究代表者 / PI）</h3>
-            <p>文部科学省 AI for Science 萌芽的挑戦研究創出事業（SPReAD, 課題番号: 26279343）「高次元科学データにおける頑健テンソル表現学習」 <a class="pub-link" href="spread_ja.html" target="_blank" rel="noopener">[課題ページ ↗]</a> <a class="pub-link" href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener">[文科省ポータル ↗]</a>。</p>
+            <p>文部科学省 AI for Science 萌芽的挑戦研究創出事業（SPReAD, 課題番号: 26279343）「高次元科学データにおける頑健テンソル表現学習」（採択率 3% 未満） <a class="pub-link" href="spread_ja.html" target="_blank" rel="noopener">[課題ページ ↗]</a> <a class="pub-link" href="https://www.mext.go.jp/aifors_spread/" target="_blank" rel="noopener">[文科省ポータル ↗]</a>。</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">2026</span>
+          <div>
+            <h3>学術表彰</h3>
+            <p>Top Area Chair, NeurIPS 2026。</p>
           </div>
         </li>
         <li>
@@ -763,10 +818,10 @@
           </div>
         </li>
         <li>
-          <span class="time">2025/03</span>
+          <span class="time">2024</span>
           <div>
             <h3>研究表彰</h3>
-            <p>理化学研究所 研究・技術奨励賞（理研桜舞賞）「先進的テンソル分解技術による頑健な機械学習」。</p>
+            <p>理化学研究所 研究・技術奨励賞（理研桜舞賞）「先進的テンソル分解技術による頑健な機械学習」（年間受賞率 2% 未満）。</p>
           </div>
         </li>
         <li>
@@ -777,6 +832,27 @@
           </div>
         </li>
       </ul>
+    </section>
+
+    <section id="reflection" class="last-section" aria-label="省察">
+      <div class="section-heading">
+        <h2>省察</h2>
+        <p>AIが数理的な導出と求解のコストを引き下げた時代における、生産性としての「定式化」について。</p>
+      </div>
+      <div class="two-column-text">
+        <article class="text-block">
+          <h3>実行コストの低下</h3>
+          <p>
+            現代のAIは、<strong>数理モデリング・検証・数理計画</strong>の限界コストを大きく引き下げた。高コストな工学上の部分問題が良設定な数理問題として定式化できれば、その解決は高価な経験的反復から低コストな自動求解へと移行する。
+          </p>
+        </article>
+        <article class="text-block">
+          <h3>依然として残る「定式化」のボトルネック</h3>
+          <p>
+            しかし、求解が安価になっても問題の定式化そのものは自動化されない。現実のシステムは自らの状態空間や構造仮定、成立範囲を明示してはくれない。未整理の現実問題を忠実な数理モデルへと抽象化し、保証が破綻する境界を見極める作業には、今なお長年の研鑽に裏打ちされた数理的判断力が不可欠である。
+          </p>
+        </article>
+      </div>
     </section>
   </main>
 
